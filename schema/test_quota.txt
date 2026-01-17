@@ -1,0 +1,19 @@
+CREATE TABLE test_quota (
+    cost_id integer,
+    cost_code text,
+    vendor text,
+    contract text,
+    link_type text,
+    bucket integer,
+    min_capacity integer,
+    max_capacity integer,
+    unit_cost_per_mbps_monthly real,
+    minslab integer,
+    lockin_months integer,
+    remarks text,
+    effective_start_time text,
+    effective_end_time text,
+    is_current integer,
+    created_by real,
+    PRIMARY KEY (cost_id)
+)

@@ -1,0 +1,1262 @@
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(1898, 35), columns=['link_id', 'link_code', 'cost_code', 'vendor', 'contract', 'link_type', 'bucket', 'link_capacity', 'unit_cost_per_mbps_monthly', 'po_status', 'sitecode', 'old_sitecode', 'site_name', 'phase', 'origin', 'ho_sitecode', 'ho_site_name', 'region', 'internal_remarks', 'cep_execution_date', 'pop_status', 'lock_in_cep_pop_remarks', 'expire_date', 'termination_date', 'termination_status', 'cluster_name_cep', 'pat_date', 'pat_status', 'last_invoice', 'lock_in_status', 'fiber_master_plan', 'effective_start_time', 'effective_end_time', 'is_current', 'user_'])
+  dtype: {'link_id': 'integer', 'link_code': 'string', 'cost_code': 'string', 'vendor': 'string', 'contract': 'string', 'link_type': 'string', 'bucket': 'integer', 'link_capacity': 'integer', 'unit_cost_per_mbps_monthly': 'integer', 'po_status': 'string', 'sitecode': 'string', 'old_sitecode': 'string', 'site_name': 'string', 'phase': 'string', 'origin': 'string', 'ho_sitecode': 'string', 'ho_site_name': 'string', 'region': 'string', 'internal_remarks': 'string', 'cep_execution_date': 'string', 'pop_status': 'string', 'lock_in_cep_pop_remarks': 'string', 'expire_date': 'string', 'termination_date': 'string', 'termination_status': 'string', 'cluster_name_cep': 'string', 'pat_date': 'string', 'pat_status': 'string', 'last_invoice': 'string', 'lock_in_status': 'string', 'fiber_master_plan': 'string', 'effective_start_time': 'string', 'effective_end_time': 'string', 'is_current': 'integer', 'USER': 'string', 'pk': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(1898, 35)
+
+ link_id link_code                 cost_code vendor         contract link_type  bucket  link_capacity  unit_cost_per_mbps_monthly  po_status sitecode old_sitecode           site_name              phase origin ho_sitecode       ho_site_name           region internal_remarks cep_execution_date pop_status lock_in_cep_pop_remarks expire_date termination_date termination_status cluster_name_cep   pat_date pat_status last_invoice  lock_in_status fiber_master_plan effective_start_time effective_end_time  is_current user_
+  100000  FHL01353 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           1500                      209.57       True  BBSDR01          NaN           Army Para Photonic New lease   Robi     CGDMG29      Akhteruzzaman Chittagong Outer              NaN         1970-01-01        NaN                     NaN   10/1/2024       1970-01-01                NaN              NaN 2018-11-04  Completed        1-May Lock in expired              Ring           2025-05-25         1970-01-01           1   abc
+  100001  FHL01354 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           1600                      209.57       True  BGMRL06          NaN Kalikabari 32m Land         2200 NodeB   Robi     KHSDR04        Shilpa Bank           Khulna                          1970-01-01        NaN                            1/0/1900       1970-01-01                NaN                  2017-04-30  Completed        1-May Lock in expired               NaN           2025-05-25         1970-01-01           1   abc
+  100002  FHL01359 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           2200                      209.57       True  BMNBG13          NaN    Borail Bazar 25m         2200 NodeB   Robi     GPSDRO5             Dhaka3     Sylhet South                          1970-01-01        NaN                                           1970-01-01                NaN                  2017-04-17  Completed        1-May Lock in expired               NaN           2025-05-25         1970-01-01           1   abc
+  100003  FHL01363 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1            900                      209.57       True  BOKHL04          NaN     Depuil 55m Land         2200 NodeB   Robi     BOSJP03            Majhira            Bogra                          1970-01-01        NaN                                           1970-01-01                NaN                  2017-05-24  Completed        1-May Lock in expired              Ring           2025-05-25         1970-01-01           1   abc
+  100004  FHL01364 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1            350                      209.57       True  BOSDR01          NaN             ABPlaza           Phase#4C   Robi     BOSJP02 Bogra Backbone 75m            Bogra                          1970-01-01        NaN                           10/1/2024       1970-01-01                NaN                  2018-03-21  Completed        1-May Lock in expired               NaN           2025-05-25         1970-01-01           1   abc
+... (1893 more rows)
+------------------------------------------
+# JSON - semantic_type_link_code
+
+{
+  "column": "link_code",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_cost_code
+
+{
+  "column": "cost_code",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_vendor
+
+{
+  "column": "vendor",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_contract
+
+{
+  "column": "contract",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_link_type
+
+{
+  "column": "link_type",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_sitecode
+
+{
+  "column": "sitecode",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_old_sitecode
+
+{
+  "column": "old_sitecode",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 337
+}
+------------------------------------------
+# JSON - semantic_type_site_name
+
+{
+  "column": "site_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_phase
+
+{
+  "column": "phase",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_origin
+
+{
+  "column": "origin",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_ho_sitecode
+
+{
+  "column": "ho_sitecode",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_ho_site_name
+
+{
+  "column": "ho_site_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_region
+
+{
+  "column": "region",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_internal_remarks
+
+{
+  "column": "internal_remarks",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_cep_execution_date
+
+{
+  "column": "cep_execution_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 178
+}
+------------------------------------------
+# JSON - semantic_type_pop_status
+
+{
+  "column": "pop_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 43
+}
+------------------------------------------
+# JSON - semantic_type_lock_in_cep_pop_remarks
+
+{
+  "column": "lock_in_cep_pop_remarks",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_expire_date
+
+{
+  "column": "expire_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_termination_date
+
+{
+  "column": "termination_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_termination_status
+
+{
+  "column": "termination_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 158
+}
+------------------------------------------
+# JSON - semantic_type_cluster_name_cep
+
+{
+  "column": "cluster_name_cep",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_pat_date
+
+{
+  "column": "pat_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_pat_status
+
+{
+  "column": "pat_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_last_invoice
+
+{
+  "column": "last_invoice",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_lock_in_status
+
+{
+  "column": "lock_in_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_fiber_master_plan
+
+{
+  "column": "fiber_master_plan",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 962
+}
+------------------------------------------
+# JSON - semantic_type_effective_start_time
+
+{
+  "column": "effective_start_time",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_effective_end_time
+
+{
+  "column": "effective_end_time",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_user_
+
+{
+  "column": "user_",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "link_id": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "link_code": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "cost_code": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "vendor": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "contract": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "link_type": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "bucket": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "link_capacity": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "unit_cost_per_mbps_monthly": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "po_status": {
+    "input_dtype": "bool",
+    "output_dtype": "bool"
+  },
+  "sitecode": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "old_sitecode": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "site_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "phase": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "origin": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "ho_sitecode": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "ho_site_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "region": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "internal_remarks": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "cep_execution_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "pop_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "lock_in_cep_pop_remarks": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "expire_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "termination_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "termination_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "cluster_name_cep": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "pat_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "pat_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "last_invoice": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "lock_in_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "fiber_master_plan": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "effective_start_time": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "effective_end_time": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "is_current": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "user_": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (      link_id link_code  ... is_current user_
+0      100000  FHL01353  ...          1   abc
+1      100001  FHL01354  ...          1   abc
+2      100002  FHL01359  ...          1   abc
+3      100003  FHL01363  ...          1   abc
+4      100004  FHL01364  ...          1   abc
+...       ...       ...  ...        ...   ...
+1893   102249  SCL04663  ...          1   abc
+1894   102251  SCL05244  ...          0   abc
+1895   102252  SCL05245  ...          0   abc
+1896   102253  SCL05246  ...          1   abc
+1897   102254  SCL05247  ...          1   abc
+
+[1898 rows x 35 columns], {'link_id': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'link_code': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'cost_code': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'vendor': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'contract': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'link_type': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'bucket': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'link_capacity': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'unit_cost_per_mbps_monthly': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'po_status': {'input_dtype': 'bool', 'output_dtype': 'bool'}, 'sitecode': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'old_sitecode': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'site_name': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'phase': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'origin': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'ho_sitecode': {'inp...
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(1898, 35), columns=['link_id', 'link_code', 'cost_code', 'vendor', 'contract', 'link_type', 'bucket', 'link_capacity', 'unit_cost_per_mbps_monthly', 'po_status', 'sitecode', 'old_sitecode', 'site_name', 'phase', 'origin', 'ho_sitecode', 'ho_site_name', 'region', 'internal_remarks', 'cep_execution_date', 'pop_status', 'lock_in_cep_pop_remarks', 'expire_date', 'termination_date', 'termination_status', 'cluster_name_cep', 'pat_date', 'pat_status', 'last_invoice', 'lock_in_status', 'fiber_master_plan', 'effective_start_time', 'effective_end_time', 'is_current', 'user_'])
+  dtype: {'link_id': 'integer', 'link_code': 'string', 'cost_code': 'string', 'vendor': 'string', 'contract': 'string', 'link_type': 'string', 'bucket': 'integer', 'link_capacity': 'integer', 'unit_cost_per_mbps_monthly': 'integer', 'po_status': 'string', 'sitecode': 'string', 'old_sitecode': 'string', 'site_name': 'string', 'phase': 'string', 'origin': 'string', 'ho_sitecode': 'string', 'ho_site_name': 'string', 'region': 'string', 'internal_remarks': 'string', 'cep_execution_date': 'string', 'pop_status': 'string', 'lock_in_cep_pop_remarks': 'string', 'expire_date': 'string', 'termination_date': 'string', 'termination_status': 'string', 'cluster_name_cep': 'string', 'pat_date': 'string', 'pat_status': 'string', 'last_invoice': 'string', 'lock_in_status': 'string', 'fiber_master_plan': 'string', 'effective_start_time': 'string', 'effective_end_time': 'string', 'is_current': 'integer', 'USER': 'string', 'pk': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(1898, 35)
+
+ link_id link_code                 cost_code vendor         contract link_type  bucket  link_capacity  unit_cost_per_mbps_monthly  po_status sitecode old_sitecode           site_name              phase origin ho_sitecode       ho_site_name           region internal_remarks cep_execution_date pop_status lock_in_cep_pop_remarks expire_date termination_date termination_status cluster_name_cep   pat_date pat_status last_invoice  lock_in_status fiber_master_plan effective_start_time effective_end_time  is_current user_
+  100000  FHL01353 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           1500                      209.57       True  BBSDR01          NaN           Army Para Photonic New lease   Robi     CGDMG29      Akhteruzzaman Chittagong Outer              NaN         1970-01-01        NaN                     NaN   10/1/2024       1970-01-01                NaN              NaN 2018-11-04  Completed        1-May Lock in expired              Ring           2025-05-25         1970-01-01           1   abc
+  100001  FHL01354 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           1600                      209.57       True  BGMRL06          NaN Kalikabari 32m Land         2200 NodeB   Robi     KHSDR04        Shilpa Bank           Khulna                          1970-01-01        NaN                            1/0/1900       1970-01-01                NaN                  2017-04-30  Completed        1-May Lock in expired               NaN           2025-05-25         1970-01-01           1   abc
+  100002  FHL01359 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           2200                      209.57       True  BMNBG13          NaN    Borail Bazar 25m         2200 NodeB   Robi     GPSDRO5             Dhaka3     Sylhet South                          1970-01-01        NaN                                           1970-01-01                NaN                  2017-04-17  Completed        1-May Lock in expired               NaN           2025-05-25         1970-01-01           1   abc
+  100003  FHL01363 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1            900                      209.57       True  BOKHL04          NaN     Depuil 55m Land         2200 NodeB   Robi     BOSJP03            Majhira            Bogra                          1970-01-01        NaN                                           1970-01-01                NaN                  2017-05-24  Completed        1-May Lock in expired              Ring           2025-05-25         1970-01-01           1   abc
+  100004  FHL01364 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1            350                      209.57       True  BOSDR01          NaN             ABPlaza           Phase#4C   Robi     BOSJP02 Bogra Backbone 75m            Bogra                          1970-01-01        NaN                           10/1/2024       1970-01-01                NaN                  2018-03-21  Completed        1-May Lock in expired               NaN           2025-05-25         1970-01-01           1   abc
+... (1893 more rows)
+------------------------------------------
+# JSON - semantic_type_link_code
+
+{
+  "column": "link_code",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_cost_code
+
+{
+  "column": "cost_code",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_vendor
+
+{
+  "column": "vendor",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_contract
+
+{
+  "column": "contract",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_link_type
+
+{
+  "column": "link_type",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_sitecode
+
+{
+  "column": "sitecode",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_old_sitecode
+
+{
+  "column": "old_sitecode",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 337
+}
+------------------------------------------
+# JSON - semantic_type_site_name
+
+{
+  "column": "site_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_phase
+
+{
+  "column": "phase",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_origin
+
+{
+  "column": "origin",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_ho_sitecode
+
+{
+  "column": "ho_sitecode",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_ho_site_name
+
+{
+  "column": "ho_site_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_region
+
+{
+  "column": "region",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_internal_remarks
+
+{
+  "column": "internal_remarks",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_cep_execution_date
+
+{
+  "column": "cep_execution_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 178
+}
+------------------------------------------
+# JSON - semantic_type_pop_status
+
+{
+  "column": "pop_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 43
+}
+------------------------------------------
+# JSON - semantic_type_lock_in_cep_pop_remarks
+
+{
+  "column": "lock_in_cep_pop_remarks",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_expire_date
+
+{
+  "column": "expire_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_termination_date
+
+{
+  "column": "termination_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_termination_status
+
+{
+  "column": "termination_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 158
+}
+------------------------------------------
+# JSON - semantic_type_cluster_name_cep
+
+{
+  "column": "cluster_name_cep",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_pat_date
+
+{
+  "column": "pat_date",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_pat_status
+
+{
+  "column": "pat_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_last_invoice
+
+{
+  "column": "last_invoice",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_lock_in_status
+
+{
+  "column": "lock_in_status",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_fiber_master_plan
+
+{
+  "column": "fiber_master_plan",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 962
+}
+------------------------------------------
+# JSON - semantic_type_effective_start_time
+
+{
+  "column": "effective_start_time",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_effective_end_time
+
+{
+  "column": "effective_end_time",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - semantic_type_user_
+
+{
+  "column": "user_",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1000
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "link_id": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "link_code": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "cost_code": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "vendor": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "contract": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "link_type": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "bucket": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "link_capacity": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "unit_cost_per_mbps_monthly": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "po_status": {
+    "input_dtype": "bool",
+    "output_dtype": "bool"
+  },
+  "sitecode": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "old_sitecode": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "site_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "phase": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "origin": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "ho_sitecode": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "ho_site_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "region": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "internal_remarks": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "cep_execution_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "pop_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "lock_in_cep_pop_remarks": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "expire_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "termination_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "termination_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "cluster_name_cep": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "pat_date": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "pat_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "last_invoice": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "lock_in_status": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "fiber_master_plan": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "effective_start_time": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "effective_end_time": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "is_current": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "user_": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (      link_id link_code  ... is_current user_
+0      100000  FHL01353  ...          1   abc
+1      100001  FHL01354  ...          1   abc
+2      100002  FHL01359  ...          1   abc
+3      100003  FHL01363  ...          1   abc
+4      100004  FHL01364  ...          1   abc
+...       ...       ...  ...        ...   ...
+1893   102249  SCL04663  ...          1   abc
+1894   102251  SCL05244  ...          0   abc
+1895   102252  SCL05245  ...          0   abc
+1896   102253  SCL05246  ...          1   abc
+1897   102254  SCL05247  ...          1   abc
+
+[1898 rows x 35 columns], {'link_id': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'link_code': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'cost_code': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'vendor': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'contract': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'link_type': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'bucket': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'link_capacity': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'unit_cost_per_mbps_monthly': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'po_status': {'input_dtype': 'bool', 'output_dtype': 'bool'}, 'sitecode': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'old_sitecode': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'site_name': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'phase': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'origin': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'ho_sitecode': {'inp...
+------------------------------------------
+# utils.crud_v2 - auto_upsert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=oracle+oracledb://akomi:***@localhost:1521/?service_name=XEPDB1)
+  data: DataFrame(shape=(1898, 35), columns=['link_id', 'link_code', 'cost_code', 'vendor', 'contract', 'link_type', 'bucket', 'link_capacity', 'unit_cost_per_mbps_monthly', 'po_status', 'sitecode', 'old_sitecode', 'site_name', 'phase', 'origin', 'ho_sitecode', 'ho_site_name', 'region', 'internal_remarks', 'cep_execution_date', 'pop_status', 'lock_in_cep_pop_remarks', 'expire_date', 'termination_date', 'termination_status', 'cluster_name_cep', 'pat_date', 'pat_status', 'last_invoice', 'lock_in_status', 'fiber_master_plan', 'effective_start_time', 'effective_end_time', 'is_current', 'user_'])
+  table: link
+  constrain: ['link_id']
+  chunk: 10000
+  add_missing_cols: False
+  failure_threshold: 1
+  semantic_meta: {'link_code': 'STRING_OBJECT', 'cost_code': 'STRING_OBJECT', 'vendor': 'STRING_OBJECT', 'contract': 'STRING_OBJECT', 'link_type': 'STRING_OBJECT', 'sitecode': 'STRING_OBJECT', 'old_sitecode': 'STRING_OBJECT', 'site_name': 'STRING_OBJECT', 'phase': 'STRING_OBJECT', 'origin': 'STRING_OBJECT', 'ho_sitecode': 'STRING_OBJECT', 'ho_site_name': 'STRING_OBJECT', 'region': 'STRING_OBJECT', 'internal_remarks': 'STRING_OBJECT', 'cep_execution_date': 'STRING_OBJECT', 'pop_status': 'STRING_OBJECT', 'lock_in_cep_pop_remarks': 'STRING_OBJECT', 'expire_date': 'STRING_OBJECT', 'termination_date': 'STRING_OBJECT', 'termination_status': 'STRING_OBJECT', 'cluster_name_cep': 'STRING_OBJECT', 'pat_date': 'STRING_OBJECT', 'pat_status': 'STRING_OBJECT', 'last_invoice': 'STRING_OBJECT', 'lock_in_status': 'STRING_OBJECT', 'fiber_master_plan': 'STRING_OBJECT', 'effective_start_time': 'STRING_OBJECT', 'effective_end_time': 'STRING_OBJECT', 'user_': 'STRING_OBJECT'}
+
+# utils.crud_v2 - auto_upsert (FAILURE)
+- error: ValueError: constrain=['link_id'] does not match any primary/unique key on 'link'. Upsert requires a unique constraint to be safe.
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(19, 18), columns=['BSC', 'CELL', 'THRAV_P', 'THRVP_P', 'THRDV_P', 'THRAV_C', 'THRVP_C', 'THRDV_C', 'RULES_APPLIED', 'MaxTi', 'MaxCong', 'MaxTch', 'DATA_OF', 'ENM', 'COMMAND', 'EXECUTION', 'LOG', 'EXECUTION_TIME'])
+  dtype: {'bsc': 'string', 'cell': 'string', 'thrav_p': 'integer', 'thrvp_p': 'integer', 'thrdv_p': 'integer', 'thrav_c': 'integer', 'thrvp_c': 'integer', 'thrdv_c': 'integer', 'rules_applied': 'string', 'MaxTi': 'integer', 'MaxCong': 'integer', 'MaxTch': 'integer', 'data_of': 'string', 'enm': 'string', 'command': 'string', 'execution': 'integer', 'log': 'integer', 'execution_time': 'string', 'pk': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(19, 18)
+
+  BSC     CELL  THRAV_P  THRVP_P  THRDV_P  THRAV_C  THRVP_C  THRDV_C RULES_APPLIED  MaxTi  MaxCong  MaxTch          DATA_OF ENM                                                            COMMAND  EXECUTION  LOG   EXECUTION_TIME
+CBEC6  CC6T88A       10       10       20        3        3        9    Cong: >0-2   0.46     0.19   36.74 12/10/2025 14:54 CTG RFVCP:CELL=CC6T88A;*RFVCC:CELL=CC6T88A,THRAV=10,THRVP=10,THRDV=20;        NaN  NaN 12/10/2025 17:52
+CBEC6  CC6T88B       10       10       20        4        4       10    Cong: >0-2   0.37     0.23   36.84 12/10/2025 14:54 CTG RFVCP:CELL=CC6T88B;*RFVCC:CELL=CC6T88B,THRAV=10,THRVP=10,THRDV=20;        NaN  NaN 12/10/2025 17:52
+DBE04  D04WL6C        5        5       14        5        5       15       Default   0.21     0.00   21.55 12/10/2025 14:54 DHK   RFVCP:CELL=D04WL6C;*RFVCC:CELL=D04WL6C,THRAV=5,THRVP=5,THRDV=14;        NaN  NaN 12/10/2025 17:52
+DBE04  D04Q14B       40       40       80        3        3        8   Ti: 1.3-1.5   1.35     0.00   43.20 12/10/2025 14:54 DHK RFVCP:CELL=D04Q14B;*RFVCC:CELL=D04Q14B,THRAV=40,THRVP=40,THRDV=80;        NaN  NaN 12/10/2025 17:52
+CBEB4 CGRZN05A        3        3       10        3        3        9       Default   0.61     0.00   35.99 12/10/2025 14:54 CTG                                                                NaN        NaN  NaN              NaN
+... (14 more rows)
+------------------------------------------
+# JSON - semantic_type_BSC
+
+{
+  "column": "BSC",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_CELL
+
+{
+  "column": "CELL",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_RULES_APPLIED
+
+{
+  "column": "RULES_APPLIED",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_DATA_OF
+
+{
+  "column": "DATA_OF",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_ENM
+
+{
+  "column": "ENM",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_COMMAND
+
+{
+  "column": "COMMAND",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 4
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "BSC": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "CELL": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "THRAV_P": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRVP_P": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRDV_P": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRAV_C": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRVP_C": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRDV_C": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "RULES_APPLIED": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "MaxTi": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MaxCong": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MaxTch": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "DATA_OF": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "ENM": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "COMMAND": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "EXECUTION": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "LOG": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "EXECUTION_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (      BSC      CELL  ...  LOG      EXECUTION_TIME
+0   CBEC6   CC6T88A  ...  NaN 2025-12-10 17:52:00
+1   CBEC6   CC6T88B  ...  NaN 2025-12-10 17:52:00
+2   DBE04   D04WL6C  ...  NaN 2025-12-10 17:52:00
+3   DBE04   D04Q14B  ...  NaN 2025-12-10 17:52:00
+4   CBEB4  CGRZN05A  ...  NaN                 NaT
+5   CBEB4  CGRZN05B  ...  NaN                 NaT
+6   CBEB4  CGRZN05C  ...  NaN                 NaT
+7   CBEB4  CGRZN09A  ...  NaN                 NaT
+8   CBEB4  CGRZN09B  ...  NaN                 NaT
+9   CBEB4  CGRZN15B  ...  NaN                 NaT
+10  CBEB5   CB5B42A  ...  NaN                 NaT
+11  CBEB5   CB5B42B  ...  NaN                 NaT
+12  CBEB5   CB5M42A  ...  NaN                 NaT
+13  CBEB5   CB5M46A  ...  NaN                 NaT
+14  CBEB6   CB6070C  ...  NaN                 NaT
+15  CBEB6   CB6086A  ...  NaN                 NaT
+16  CBEB6   CB6888A  ...  NaN                 NaT
+17  CBEB6   CB6888B  ...  NaN                 NaT
+18  CBEB6   CB6888C  ...  NaN                 NaT
+
+[19 rows x 18 columns], {'BSC': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'CELL': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'THRAV_P': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRVP_P': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRDV_P': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRAV_C': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRVP_C': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRDV_C': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'RULES_APPLIED': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'MaxTi': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MaxCong': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MaxTch': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'DATA_OF': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRI...
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(19, 18), columns=['BSC', 'CELL', 'THRAV_P', 'THRVP_P', 'THRDV_P', 'THRAV_C', 'THRVP_C', 'THRDV_C', 'RULES_APPLIED', 'MaxTi', 'MaxCong', 'MaxTch', 'DATA_OF', 'ENM', 'COMMAND', 'EXECUTION', 'LOG', 'EXECUTION_TIME'])
+  dtype: {'bsc': 'string', 'cell': 'string', 'thrav_p': 'integer', 'thrvp_p': 'integer', 'thrdv_p': 'integer', 'thrav_c': 'integer', 'thrvp_c': 'integer', 'thrdv_c': 'integer', 'rules_applied': 'string', 'MaxTi': 'integer', 'MaxCong': 'integer', 'MaxTch': 'integer', 'data_of': 'string', 'enm': 'string', 'command': 'string', 'execution': 'integer', 'log': 'integer', 'execution_time': 'string', 'pk': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(19, 18)
+
+  BSC     CELL  THRAV_P  THRVP_P  THRDV_P  THRAV_C  THRVP_C  THRDV_C RULES_APPLIED  MaxTi  MaxCong  MaxTch          DATA_OF ENM                                                            COMMAND  EXECUTION  LOG   EXECUTION_TIME
+CBEC6  CC6T88A       10       10       20        3        3        9    Cong: >0-2   0.46     0.19   36.74 12/10/2025 14:54 CTG RFVCP:CELL=CC6T88A;*RFVCC:CELL=CC6T88A,THRAV=10,THRVP=10,THRDV=20;        NaN  NaN 12/10/2025 17:52
+CBEC6  CC6T88B       10       10       20        4        4       10    Cong: >0-2   0.37     0.23   36.84 12/10/2025 14:54 CTG RFVCP:CELL=CC6T88B;*RFVCC:CELL=CC6T88B,THRAV=10,THRVP=10,THRDV=20;        NaN  NaN 12/10/2025 17:52
+DBE04  D04WL6C        5        5       14        5        5       15       Default   0.21     0.00   21.55 12/10/2025 14:54 DHK   RFVCP:CELL=D04WL6C;*RFVCC:CELL=D04WL6C,THRAV=5,THRVP=5,THRDV=14;        NaN  NaN 12/10/2025 17:52
+DBE04  D04Q14B       40       40       80        3        3        8   Ti: 1.3-1.5   1.35     0.00   43.20 12/10/2025 14:54 DHK RFVCP:CELL=D04Q14B;*RFVCC:CELL=D04Q14B,THRAV=40,THRVP=40,THRDV=80;        NaN  NaN 12/10/2025 17:52
+CBEB4 CGRZN05A        3        3       10        3        3        9       Default   0.61     0.00   35.99 12/10/2025 14:54 CTG                                                                NaN        NaN  NaN              NaN
+... (14 more rows)
+------------------------------------------
+# JSON - semantic_type_BSC
+
+{
+  "column": "BSC",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_CELL
+
+{
+  "column": "CELL",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_RULES_APPLIED
+
+{
+  "column": "RULES_APPLIED",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_DATA_OF
+
+{
+  "column": "DATA_OF",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_ENM
+
+{
+  "column": "ENM",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 19
+}
+------------------------------------------
+# JSON - semantic_type_COMMAND
+
+{
+  "column": "COMMAND",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 4
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "BSC": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "CELL": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "THRAV_P": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRVP_P": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRDV_P": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRAV_C": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRVP_C": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "THRDV_C": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "RULES_APPLIED": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "MaxTi": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MaxCong": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MaxTch": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "DATA_OF": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "ENM": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "COMMAND": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "EXECUTION": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "LOG": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "EXECUTION_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (      BSC      CELL  ...  LOG      EXECUTION_TIME
+0   CBEC6   CC6T88A  ...  NaN 2025-12-10 17:52:00
+1   CBEC6   CC6T88B  ...  NaN 2025-12-10 17:52:00
+2   DBE04   D04WL6C  ...  NaN 2025-12-10 17:52:00
+3   DBE04   D04Q14B  ...  NaN 2025-12-10 17:52:00
+4   CBEB4  CGRZN05A  ...  NaN                 NaT
+5   CBEB4  CGRZN05B  ...  NaN                 NaT
+6   CBEB4  CGRZN05C  ...  NaN                 NaT
+7   CBEB4  CGRZN09A  ...  NaN                 NaT
+8   CBEB4  CGRZN09B  ...  NaN                 NaT
+9   CBEB4  CGRZN15B  ...  NaN                 NaT
+10  CBEB5   CB5B42A  ...  NaN                 NaT
+11  CBEB5   CB5B42B  ...  NaN                 NaT
+12  CBEB5   CB5M42A  ...  NaN                 NaT
+13  CBEB5   CB5M46A  ...  NaN                 NaT
+14  CBEB6   CB6070C  ...  NaN                 NaT
+15  CBEB6   CB6086A  ...  NaN                 NaT
+16  CBEB6   CB6888A  ...  NaN                 NaT
+17  CBEB6   CB6888B  ...  NaN                 NaT
+18  CBEB6   CB6888C  ...  NaN                 NaT
+
+[19 rows x 18 columns], {'BSC': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'CELL': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'THRAV_P': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRVP_P': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRDV_P': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRAV_C': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRVP_C': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'THRDV_C': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'RULES_APPLIED': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'MaxTi': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MaxCong': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MaxTch': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'DATA_OF': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRI...
+------------------------------------------
+# utils.crud_v2 - auto_upsert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=oracle+oracledb://akomi:***@localhost:1521/?service_name=XEPDB1)
+  data: DataFrame(shape=(19, 18), columns=['BSC', 'CELL', 'THRAV_P', 'THRVP_P', 'THRDV_P', 'THRAV_C', 'THRVP_C', 'THRDV_C', 'RULES_APPLIED', 'MaxTi', 'MaxCong', 'MaxTch', 'DATA_OF', 'ENM', 'COMMAND', 'EXECUTION', 'LOG', 'EXECUTION_TIME'])
+  table: vamos_exec_command
+  constrain: ['CELL', 'DATA_OF']
+  chunk: 10000
+  add_missing_cols: False
+  failure_threshold: 1
+  semantic_meta: {'BSC': 'STRING_OBJECT', 'CELL': 'STRING_OBJECT', 'RULES_APPLIED': 'STRING_OBJECT', 'DATA_OF': 'STRING_OBJECT', 'ENM': 'STRING_OBJECT', 'COMMAND': 'STRING_OBJECT'}
+
+# utils.crud_v2 - auto_upsert (FAILURE)
+- error: ValueError: constrain=['CELL', 'DATA_OF'] does not match any primary/unique key on 'vamos_exec_command'. Upsert requires a unique constraint to be safe.
+------------------------------------------

@@ -1,0 +1,39 @@
+{
+  "server": "oracle",
+  "schema": null,
+  "table": "test_quota_evolve",
+  "columns": [
+    {
+      "name": "COST_ID",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1001"
+    },
+    {
+      "name": "COST_CODE",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "SCL*Robi-LP-001855-1*BH*2",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "VENDOR",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "SCL",
+      "semantic_type": "STRING_OBJECT"
+    }
+  ],
+  "primary_key": [
+    "COST_ID"
+  ],
+  "foreign_keys": [],
+  "unique_constraints": [],
+  "autoincrement": null,
+  "column_mapping": null,
+  "row_count": 5,
+  "column_count": 3
+}

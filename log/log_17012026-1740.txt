@@ -1,0 +1,16 @@
+# casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(2, 4), columns=['id', 'name', 'score', 'active'])
+
+# DATAFRAME - cast_df_input
+
+shape=(2, 4)
+
+ id  name  score  active
+  1 Alice   95.5    True
+  2   Bob   88.0   False
+------------------------------------------
+# casting - cast_df (SUCCESS)
+- outputs:
+  DataFrame(shape=(2, 4), columns=['id', 'name', 'score', 'active'])
+------------------------------------------

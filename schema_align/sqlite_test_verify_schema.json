@@ -1,0 +1,65 @@
+{
+  "dialect": "sqlite",
+  "table": {
+    "name": "test_verify",
+    "schema": "",
+    "fully_qualified_name": "test_verify"
+  },
+  "columns": [
+    {
+      "original_name": "id",
+      "sanitized_name": "id",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "name",
+      "sanitized_name": "name",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "score",
+      "sanitized_name": "score",
+      "pandas_dtype": "float64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "real",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "active",
+      "sanitized_name": "active",
+      "pandas_dtype": "bool",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    }
+  ],
+  "constraints": {
+    "primary_key": null,
+    "unique": [],
+    "foreign_keys": []
+  },
+  "auto_increment": null,
+  "warnings": [],
+  "decisions": {
+    "schema": null,
+    "include_not_null": false,
+    "object_sample_size": 5000,
+    "json_text_threshold": 0.85
+  },
+  "sql": {
+    "create_table": "CREATE TABLE test_verify (\n    id integer,\n    name text,\n    score real,\n    active integer\n)",
+    "constraints": [],
+    "auto_increment": [],
+    "full_ddl": "CREATE TABLE test_verify (\n    id integer,\n    name text,\n    score real,\n    active integer\n)"
+  }
+}

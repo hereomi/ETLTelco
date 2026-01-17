@@ -1,0 +1,193 @@
+{
+  "dialect": "sqlite",
+  "table": {
+    "name": "test_quota",
+    "schema": "",
+    "fully_qualified_name": "test_quota"
+  },
+  "columns": [
+    {
+      "original_name": "COST_ID",
+      "sanitized_name": "cost_id",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "COST_CODE",
+      "sanitized_name": "cost_code",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "VENDOR",
+      "sanitized_name": "vendor",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "CONTRACT",
+      "sanitized_name": "contract",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "LINK_TYPE",
+      "sanitized_name": "link_type",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "BUCKET",
+      "sanitized_name": "bucket",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "MIN_CAPACITY",
+      "sanitized_name": "min_capacity",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "MAX_CAPACITY",
+      "sanitized_name": "max_capacity",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "UNIT_COST_PER_MBPS_MONTHLY",
+      "sanitized_name": "unit_cost_per_mbps_monthly",
+      "pandas_dtype": "float64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "real",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "MINSLAB",
+      "sanitized_name": "minslab",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "LOCKIN_MONTHS",
+      "sanitized_name": "lockin_months",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "REMARKS",
+      "sanitized_name": "remarks",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": true,
+      "warnings": []
+    },
+    {
+      "original_name": "EFFECTIVE_START_TIME",
+      "sanitized_name": "effective_start_time",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "EFFECTIVE_END_TIME",
+      "sanitized_name": "effective_end_time",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "IS_CURRENT",
+      "sanitized_name": "is_current",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "CREATED_BY",
+      "sanitized_name": "created_by",
+      "pandas_dtype": "float64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "real",
+      "nullable": true,
+      "warnings": []
+    }
+  ],
+  "constraints": {
+    "primary_key": null,
+    "unique": [],
+    "foreign_keys": []
+  },
+  "auto_increment": null,
+  "warnings": [
+    "Column renamed 'COST_ID' -> 'cost_id' for SQLite compatibility",
+    "Column renamed 'COST_CODE' -> 'cost_code' for SQLite compatibility",
+    "Column renamed 'VENDOR' -> 'vendor' for SQLite compatibility",
+    "Column renamed 'CONTRACT' -> 'contract' for SQLite compatibility",
+    "Column renamed 'LINK_TYPE' -> 'link_type' for SQLite compatibility",
+    "Column renamed 'BUCKET' -> 'bucket' for SQLite compatibility",
+    "Column renamed 'MIN_CAPACITY' -> 'min_capacity' for SQLite compatibility",
+    "Column renamed 'MAX_CAPACITY' -> 'max_capacity' for SQLite compatibility",
+    "Column renamed 'UNIT_COST_PER_MBPS_MONTHLY' -> 'unit_cost_per_mbps_monthly' for SQLite compatibility",
+    "Column renamed 'MINSLAB' -> 'minslab' for SQLite compatibility",
+    "Column renamed 'LOCKIN_MONTHS' -> 'lockin_months' for SQLite compatibility",
+    "Column renamed 'REMARKS' -> 'remarks' for SQLite compatibility",
+    "Column renamed 'EFFECTIVE_START_TIME' -> 'effective_start_time' for SQLite compatibility",
+    "Column renamed 'EFFECTIVE_END_TIME' -> 'effective_end_time' for SQLite compatibility",
+    "Column renamed 'IS_CURRENT' -> 'is_current' for SQLite compatibility",
+    "Column renamed 'CREATED_BY' -> 'created_by' for SQLite compatibility"
+  ],
+  "decisions": {
+    "schema": null,
+    "include_not_null": false,
+    "object_sample_size": 5000,
+    "json_text_threshold": 0.85,
+    "pk": [
+      "COST_ID"
+    ]
+  },
+  "sql": {
+    "create_table": "CREATE TABLE test_quota (\n    cost_id integer,\n    cost_code text,\n    vendor text,\n    contract text,\n    link_type text,\n    bucket integer,\n    min_capacity integer,\n    max_capacity integer,\n    unit_cost_per_mbps_monthly real,\n    minslab integer,\n    lockin_months integer,\n    remarks text,\n    effective_start_time text,\n    effective_end_time text,\n    is_current integer,\n    created_by real,\n    PRIMARY KEY (cost_id)\n)",
+    "constraints": [],
+    "auto_increment": [],
+    "full_ddl": "CREATE TABLE test_quota (\n    cost_id integer,\n    cost_code text,\n    vendor text,\n    contract text,\n    link_type text,\n    bucket integer,\n    min_capacity integer,\n    max_capacity integer,\n    unit_cost_per_mbps_monthly real,\n    minslab integer,\n    lockin_months integer,\n    remarks text,\n    effective_start_time text,\n    effective_end_time text,\n    is_current integer,\n    created_by real,\n    PRIMARY KEY (cost_id)\n)"
+  }
+}

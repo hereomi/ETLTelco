@@ -1,0 +1,70 @@
+active_radio_alarm:
+  pk:
+  - 'Unnamed: 0'
+  table_name: csv_active_radio_alarm
+  operation: upsert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+clac_vamos_exec:
+  pk:
+  - CELL
+  table_name: csv_clac_vamos_exec
+  operation: upsert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+link - Copy:
+  pk:
+  - LINK_ID
+  table_name: csv_link - Copy
+  operation: upsert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+link:
+  pk:
+  - link_id
+  table_name: csv_link
+  operation: upsert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+making_int:
+  pk: null
+  table_name: csv_making_int
+  operation: insert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+part_2:
+  pk: null
+  table_name: csv_part_2
+  operation: insert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+quota:
+  pk:
+  - COST_ID
+  table_name: csv_quota
+  operation: upsert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null
+vamos_exec_command:
+  pk:
+  - CELL
+  table_name: csv_vamos_exec_command
+  operation: upsert
+  dtypes: null
+  table_column_addition: true
+  outlier_percentage: 1.0
+  executed_at: null

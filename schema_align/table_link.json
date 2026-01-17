@@ -1,0 +1,321 @@
+{
+  "server": "oracle",
+  "schema": null,
+  "table": "table_link",
+  "columns": [
+    {
+      "name": "link_id",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "100000"
+    },
+    {
+      "name": "link_code",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "FHL01353",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "cost_code",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "FHL*Robi-LP-001358-3*BH*1",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "vendor",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "FHL",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "contract",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "Robi-LP-001358-3",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "link_type",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "BH",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "bucket",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1"
+    },
+    {
+      "name": "link_capacity",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1500"
+    },
+    {
+      "name": "unit_cost_per_mbps_monthly",
+      "pandas_dtype": "float64",
+      "sql_dtype": "BINARY_DOUBLE",
+      "nullable": "False",
+      "sample_value": "209.57"
+    },
+    {
+      "name": "po_status",
+      "pandas_dtype": "bool",
+      "sql_dtype": "NUMBER(1,0)",
+      "nullable": "False",
+      "sample_value": "True"
+    },
+    {
+      "name": "sitecode",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "BBSDR01",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "old_sitecode",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "BO6557",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "site_name",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Army Para",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "phase",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Photonic New lease",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "origin",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Robi",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "ho_sitecode",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "CGDMG29",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "ho_site_name",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Akhteruzzaman",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "region",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Chittagong Outer",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "internal_remarks",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": " ",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "cep_execution_date",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "True",
+      "sample_value": "1970-01-01 00:00:00"
+    },
+    {
+      "name": "pop_status",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Lock in",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "lock_in_cep_pop_remarks",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": " ",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "expire_date",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "10/1/2024",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "termination_date",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "False",
+      "sample_value": "1970-01-01 00:00:00"
+    },
+    {
+      "name": "termination_status",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": " ",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "cluster_name_cep",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": " ",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "pat_date",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "True",
+      "sample_value": "2018-11-04 00:00:00"
+    },
+    {
+      "name": "pat_status",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "Completed",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "last_invoice",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "1-May",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "lock_in_status",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Lock in expired",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "fiber_master_plan",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "Ring",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "effective_start_time",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "False",
+      "sample_value": "2025-05-25 00:00:00"
+    },
+    {
+      "name": "effective_end_time",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "False",
+      "sample_value": "1970-01-01 00:00:00"
+    },
+    {
+      "name": "is_current",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1"
+    },
+    {
+      "name": "user_",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "abc",
+      "semantic_type": "STRING_OBJECT"
+    }
+  ],
+  "primary_key": [
+    "link_id"
+  ],
+  "foreign_keys": [],
+  "unique_constraints": [],
+  "autoincrement": null,
+  "column_mapping": {
+    "link_id": "link_id",
+    "link_code": "link_code",
+    "cost_code": "cost_code",
+    "vendor": "vendor",
+    "contract": "contract",
+    "link_type": "link_type",
+    "bucket": "bucket",
+    "link_capacity": "link_capacity",
+    "unit_cost_per_mbps_monthly": "unit_cost_per_mbps_monthly",
+    "po_status": "po_status",
+    "sitecode": "sitecode",
+    "old_sitecode": "old_sitecode",
+    "site_name": "site_name",
+    "phase": "phase",
+    "origin": "origin",
+    "ho_sitecode": "ho_sitecode",
+    "ho_site_name": "ho_site_name",
+    "region": "region",
+    "internal_remarks": "internal_remarks",
+    "cep_execution_date": "cep_execution_date",
+    "pop_status": "pop_status",
+    "lock_in_cep_pop_remarks": "lock_in_cep_pop_remarks",
+    "expire_date": "expire_date",
+    "termination_date": "termination_date",
+    "termination_status": "termination_status",
+    "cluster_name_cep": "cluster_name_cep",
+    "pat_date": "pat_date",
+    "pat_status": "pat_status",
+    "last_invoice": "last_invoice",
+    "lock_in_status": "lock_in_status",
+    "fiber_master_plan": "fiber_master_plan",
+    "effective_start_time": "effective_start_time",
+    "effective_end_time": "effective_end_time",
+    "is_current": "is_current",
+    "user_": "user_"
+  },
+  "row_count": 1898,
+  "column_count": 35
+}

@@ -1,0 +1,1130 @@
+# casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(1898, 35), columns=['LINK_ID', 'LINK_CODE', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'LINK_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'PO_STATUS', 'SITECODE', 'OLD_SITECODE', 'SITE_NAME', 'PHASE', 'ORIGIN', 'HO_SITECODE', 'HO_SITE_NAME', 'REGION', 'INTERNAL_REMARKS', 'CEP_EXECUTION_DATE', 'POP_STATUS', 'LOCK_IN_CEP_POP_REMARKS', 'EXPIRE_DATE', 'TERMINATION_DATE', 'TERMINATION_STATUS', 'CLUSTER_NAME_CEP', 'PAT_DATE', 'PAT_STATUS', 'LAST_INVOICE', 'LOCK_IN_STATUS', 'FIBER_MASTER_PLAN', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'USER'])
+
+# DATAFRAME - cast_df_input
+
+shape=(1898, 35)
+
+ LINK_ID LINK_CODE                 COST_CODE VENDOR         CONTRACT LINK_TYPE  BUCKET  LINK_CAPACITY  UNIT_COST_PER_MBPS_MONTHLY PO_STATUS SITECODE OLD_SITECODE           SITE_NAME              PHASE ORIGIN HO_SITECODE       HO_SITE_NAME           REGION INTERNAL_REMARKS CEP_EXECUTION_DATE POP_STATUS LOCK_IN_CEP_POP_REMARKS EXPIRE_DATE TERMINATION_DATE TERMINATION_STATUS CLUSTER_NAME_CEP  PAT_DATE PAT_STATUS LAST_INVOICE  LOCK_IN_STATUS FIBER_MASTER_PLAN EFFECTIVE_START_TIME EFFECTIVE_END_TIME  IS_CURRENT USER
+  100000  FHL01353 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           1500                      209.57       Yes  BBSDR01          NaN           Army Para Photonic New lease   Robi     CGDMG29      Akhteruzzaman Chittagong Outer              NaN           1/1/1970        NaN                     NaN   10/1/2024         1/1/1970                NaN              NaN 11/4/2018  Completed        1-May Lock in expired              Ring            5/25/2025           1/1/1970           1  abc
+  100001  FHL01354 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           1600                      209.57       Yes  BGMRL06          NaN Kalikabari 32m Land         2200 NodeB   Robi     KHSDR04        Shilpa Bank           Khulna                            1/1/1970        NaN                            1/0/1900         1/1/1970                NaN                  4/30/2017  Completed        1-May Lock in expired               NaN            5/25/2025           1/1/1970           1  abc
+  100002  FHL01359 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1           2200                      209.57       Yes  BMNBG13          NaN    Borail Bazar 25m         2200 NodeB   Robi     GPSDRO5             Dhaka3     Sylhet South                            1/1/1970        NaN                                             1/1/1970                NaN                  4/17/2017  Completed        1-May Lock in expired               NaN            5/25/2025           1/1/1970           1  abc
+  100003  FHL01363 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1            900                      209.57       Yes  BOKHL04          NaN     Depuil 55m Land         2200 NodeB   Robi     BOSJP03            Majhira            Bogra                            1/1/1970        NaN                                             1/1/1970                NaN                  5/24/2017  Completed        1-May Lock in expired              Ring            5/25/2025           1/1/1970           1  abc
+  100004  FHL01364 FHL*Robi-LP-001358-3*BH*1    FHL Robi-LP-001358-3        BH       1            350                      209.57       Yes  BOSDR01          NaN             ABPlaza           Phase#4C   Robi     BOSJP02 Bogra Backbone 75m            Bogra                            1/1/1970        NaN                           10/1/2024         1/1/1970                NaN                  3/21/2018  Completed        1-May Lock in expired               NaN            5/25/2025           1/1/1970           1  abc
+... (1893 more rows)
+------------------------------------------
+# casting - cast_df (SUCCESS)
+- outputs:
+  DataFrame(shape=(1898, 35), columns=['LINK_ID', 'LINK_CODE', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'LINK_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'PO_STATUS', 'SITECODE', 'OLD_SITECODE', 'SITE_NAME', 'PHASE', 'ORIGIN', 'HO_SITECODE', 'HO_SITE_NAME', 'REGION', 'INTERNAL_REMARKS', 'CEP_EXECUTION_DATE', 'POP_STATUS', 'LOCK_IN_CEP_POP_REMARKS', 'EXPIRE_DATE', 'TERMINATION_DATE', 'TERMINATION_STATUS', 'CLUSTER_NAME_CEP', 'PAT_DATE', 'PAT_STATUS', 'LAST_INVOICE', 'LOCK_IN_STATUS', 'FIBER_MASTER_PLAN', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'USER'])
+------------------------------------------
+# data_profiler - profile_dataframe (START)
+- inputs:
+  df: DataFrame(shape=(1898, 35), columns=['LINK_ID', 'LINK_CODE', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'LINK_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'PO_STATUS', 'SITECODE', 'OLD_SITECODE', 'SITE_NAME', 'PHASE', 'ORIGIN', 'HO_SITECODE', 'HO_SITE_NAME', 'REGION', 'INTERNAL_REMARKS', 'CEP_EXECUTION_DATE', 'POP_STATUS', 'LOCK_IN_CEP_POP_REMARKS', 'EXPIRE_DATE', 'TERMINATION_DATE', 'TERMINATION_STATUS', 'CLUSTER_NAME_CEP', 'PAT_DATE', 'PAT_STATUS', 'LAST_INVOICE', 'LOCK_IN_STATUS', 'FIBER_MASTER_PLAN', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'USER'])
+
+# JSON - high_null_columns
+
+[
+  {
+    "Column": "OLD_SITECODE",
+    "Data Type": "object",
+    "Is Categorical": "False",
+    "All Unique": "False",
+    "Is Datetime": false,
+    "Count of None": "1561",
+    "Data Length (Non-Null)": "337",
+    "% of None": 82.24,
+    "Total Unique Data Points": 336
+  },
+  {
+    "Column": "CEP_EXECUTION_DATE",
+    "Data Type": "datetime64[ns]",
+    "Is Categorical": "False",
+    "All Unique": "False",
+    "Is Datetime": true,
+    "Count of None": "1720",
+    "Data Length (Non-Null)": "178",
+    "% of None": 90.62,
+    "Total Unique Data Points": 29
+  },
+  {
+    "Column": "POP_STATUS",
+    "Data Type": "object",
+    "Is Categorical": "True",
+    "All Unique": "False",
+    "Is Datetime": false,
+    "Count of None": "1855",
+    "Data Length (Non-Null)": "43",
+    "% of None": 97.73,
+    "Total Unique Data Points": 1
+  },
+  {
+    "Column": "TERMINATION_STATUS",
+    "Data Type": "object",
+    "Is Categorical": "True",
+    "All Unique": "False",
+    "Is Datetime": false,
+    "Count of None": "1740",
+    "Data Length (Non-Null)": "158",
+    "% of None": 91.68,
+    "Total Unique Data Points": 2
+  },
+  {
+    "Column": "FIBER_MASTER_PLAN",
+    "Data Type": "object",
+    "Is Categorical": "True",
+    "All Unique": "False",
+    "Is Datetime": false,
+    "Count of None": "936",
+    "Data Length (Non-Null)": "962",
+    "% of None": 49.32,
+    "Total Unique Data Points": 2
+  }
+]
+------------------------------------------
+# data_profiler - profile_dataframe (SUCCESS)
+- outputs:
+  DataFrame(shape=(35, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+------------------------------------------
+# data_profiler - get_pk (START)
+- inputs:
+  df: DataFrame(shape=(1898, 35), columns=['LINK_ID', 'LINK_CODE', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'LINK_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'PO_STATUS', 'SITECODE', 'OLD_SITECODE', 'SITE_NAME', 'PHASE', 'ORIGIN', 'HO_SITECODE', 'HO_SITE_NAME', 'REGION', 'INTERNAL_REMARKS', 'CEP_EXECUTION_DATE', 'POP_STATUS', 'LOCK_IN_CEP_POP_REMARKS', 'EXPIRE_DATE', 'TERMINATION_DATE', 'TERMINATION_STATUS', 'CLUSTER_NAME_CEP', 'PAT_DATE', 'PAT_STATUS', 'LAST_INVOICE', 'LOCK_IN_STATUS', 'FIBER_MASTER_PLAN', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'USER'])
+  dfinfo: DataFrame(shape=(35, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+
+# JSON - pk_detection
+
+{
+  "pk_name": "pk",
+  "components": [
+    "LINK_ID"
+  ],
+  "is_unique": true,
+  "non_null_rows": 0,
+  "warnings": []
+}
+------------------------------------------
+# data_profiler - get_pk (SUCCESS)
+- outputs:
+  (      LINK_ID LINK_CODE  ... USER      pk
+0      100000  FHL01353  ...  abc  100000
+1      100001  FHL01354  ...  abc  100001
+2      100002  FHL01359  ...  abc  100002
+3      100003  FHL01363  ...  abc  100003
+4      100004  FHL01364  ...  abc  100004
+...       ...       ...  ...  ...     ...
+1893   102249  SCL04663  ...  abc  102249
+1894   102251  SCL05244  ...  abc  102251
+1895   102252  SCL05245  ...  abc  102252
+1896   102253  SCL05246  ...  abc  102253
+1897   102254  SCL05247  ...  abc  102254
+
+[1898 rows x 36 columns], 'pk', {'components': ['LINK_ID'], 'is_unique': True, 'non_null_pk_rows': 0})
+------------------------------------------
+# ddl_create - df_ddl (START)
+- inputs:
+  input_df_or_csv: DataFrame(shape=(1898, 35), columns=['LINK_ID', 'LINK_CODE', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'LINK_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'PO_STATUS', 'SITECODE', 'OLD_SITECODE', 'SITE_NAME', 'PHASE', 'ORIGIN', 'HO_SITECODE', 'HO_SITE_NAME', 'REGION', 'INTERNAL_REMARKS', 'CEP_EXECUTION_DATE', 'POP_STATUS', 'LOCK_IN_CEP_POP_REMARKS', 'EXPIRE_DATE', 'TERMINATION_DATE', 'TERMINATION_STATUS', 'CLUSTER_NAME_CEP', 'PAT_DATE', 'PAT_STATUS', 'LAST_INVOICE', 'LOCK_IN_STATUS', 'FIBER_MASTER_PLAN', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'USER'])
+  table: table_link
+  server: oracle
+  pk: ['LINK_ID']
+
+# JSON - type_mapping_LINK_ID
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_CODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_COST_CODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_VENDOR
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CONTRACT
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_TYPE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_BUCKET
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_CAPACITY
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_UNIT_COST_PER_MBPS_MONTHLY
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PO_STATUS
+
+{
+  "pandas_dtype": "bool",
+  "sql_type": "NUMBER(1,0)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_OLD_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_SITE_NAME
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PHASE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_ORIGIN
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_HO_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_HO_SITE_NAME
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_REGION
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_INTERNAL_REMARKS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CEP_EXECUTION_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_POP_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LOCK_IN_CEP_POP_REMARKS
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EXPIRE_DATE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_TERMINATION_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_TERMINATION_STATUS
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CLUSTER_NAME_CEP
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PAT_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PAT_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LAST_INVOICE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LOCK_IN_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_FIBER_MASTER_PLAN
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EFFECTIVE_START_TIME
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EFFECTIVE_END_TIME
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_IS_CURRENT
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_USER
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_ID
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_CODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_COST_CODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_VENDOR
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CONTRACT
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_TYPE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_BUCKET
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_CAPACITY
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_UNIT_COST_PER_MBPS_MONTHLY
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PO_STATUS
+
+{
+  "pandas_dtype": "bool",
+  "sql_type": "NUMBER(1,0)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_OLD_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_SITE_NAME
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PHASE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_ORIGIN
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_HO_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_HO_SITE_NAME
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_REGION
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_INTERNAL_REMARKS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CEP_EXECUTION_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_POP_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LOCK_IN_CEP_POP_REMARKS
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EXPIRE_DATE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_TERMINATION_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_TERMINATION_STATUS
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CLUSTER_NAME_CEP
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PAT_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PAT_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LAST_INVOICE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LOCK_IN_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_FIBER_MASTER_PLAN
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EFFECTIVE_START_TIME
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EFFECTIVE_END_TIME
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_IS_CURRENT
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_USER
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_ID
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_CODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_COST_CODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_VENDOR
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CONTRACT
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_TYPE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_BUCKET
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LINK_CAPACITY
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_UNIT_COST_PER_MBPS_MONTHLY
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PO_STATUS
+
+{
+  "pandas_dtype": "bool",
+  "sql_type": "NUMBER(1,0)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_OLD_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_SITE_NAME
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PHASE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_ORIGIN
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_HO_SITECODE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_HO_SITE_NAME
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_REGION
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_INTERNAL_REMARKS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CEP_EXECUTION_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_POP_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LOCK_IN_CEP_POP_REMARKS
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EXPIRE_DATE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_TERMINATION_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_TERMINATION_STATUS
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_CLUSTER_NAME_CEP
+
+{
+  "pandas_dtype": "float64",
+  "sql_type": "BINARY_DOUBLE",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PAT_DATE
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_PAT_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LAST_INVOICE
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_LOCK_IN_STATUS
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_FIBER_MASTER_PLAN
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EFFECTIVE_START_TIME
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_EFFECTIVE_END_TIME
+
+{
+  "pandas_dtype": "datetime64[ns]",
+  "sql_type": "TIMESTAMP",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_IS_CURRENT
+
+{
+  "pandas_dtype": "int64",
+  "sql_type": "NUMBER",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# JSON - type_mapping_USER
+
+{
+  "pandas_dtype": "object",
+  "sql_type": "VARCHAR2(255)",
+  "server": "oracle",
+  "semantic_type": null
+}
+------------------------------------------
+# STRING - ddl_oracle_table_link
+
+CREATE TABLE TABLE_LINK (
+    LINK_ID NUMBER NOT NULL,
+    LINK_CODE VARCHAR2(255) NOT NULL,
+    COST_CODE VARCHAR2(255) NOT NULL,
+    VENDOR VARCHAR2(255) NOT NULL,
+    CONTRACT VARCHAR2(255) NOT NULL,
+    LINK_TYPE VARCHAR2(255) NOT NULL,
+    BUCKET NUMBER NOT NULL,
+    LINK_CAPACITY NUMBER NOT NULL,
+    UNIT_COST_PER_MBPS_MONTHLY BINARY_DOUBLE NOT NULL,
+    PO_STATUS NUMBER(1,0) NOT NULL,
+    SITECODE VARCHAR2(255) NOT NULL,
+    OLD_SITECODE VARCHAR2(255) NOT NULL,
+    SITE_NAME VARCHAR2(255) NOT NULL,
+    PHASE VARCHAR2(255) NOT NULL,
+    ORIGIN VARCHAR2(255) NOT NULL,
+    HO_SITECODE VARCHAR2(255) NOT NULL,
+    HO_SITE_NAME VARCHAR2(255) NOT NULL,
+    REGION VARCHAR2(255) NOT NULL,
+    INTERNAL_REMARKS VARCHAR2(255) NOT NULL,
+    CEP_EXECUTION_DATE TIMESTAMP NULL,
+    POP_STATUS VARCHAR2(255) NOT NULL,
+    LOCK_IN_CEP_POP_REMARKS BINARY_DOUBLE NULL,
+    EXPIRE_DATE VARCHAR2(255) NULL,
+    TERMINATION_DATE TIMESTAMP NOT NULL,
+    TERMINATION_STATUS BINARY_DOUBLE NULL,
+    CLUSTER_NAME_CEP BINARY_DOUBLE NULL,
+    PAT_DATE TIMESTAMP NULL,
+    PAT_STATUS VARCHAR2(255) NOT NULL,
+    LAST_INVOICE VARCHAR2(255) NOT NULL,
+    LOCK_IN_STATUS VARCHAR2(255) NOT NULL,
+    FIBER_MASTER_PLAN VARCHAR2(255) NOT NULL,
+    EFFECTIVE_START_TIME TIMESTAMP NOT NULL,
+    EFFECTIVE_END_TIME TIMESTAMP NOT NULL,
+    IS_CURRENT NUMBER NOT NULL,
+    USER VARCHAR2(255) NOT NULL,
+    CONSTRAINT TABLE_LINK_PK PRIMARY KEY (LINK_ID)
+);
+------------------------------------------
+# JSON - schema_meta_oracle_table_link
+
+{
+  "table": "table_link",
+  "server": "oracle",
+  "columns": 35,
+  "pk": [
+    "LINK_ID"
+  ]
+}
+------------------------------------------
+# ddl_create - df_ddl (SUCCESS)
+- outputs:
+  ('CREATE TABLE TABLE_LINK (\n    LINK_ID NUMBER NOT NULL,\n    LINK_CODE VARCHAR2(255) NOT NULL,\n    COST_CODE VARCHAR2(255) NOT NULL,\n    VENDOR VARCHAR2(255) NOT NULL,\n    CONTRACT VARCHAR2(255) NOT NULL,\n    LINK_TYPE VARCHAR2(255) NOT NULL,\n    BUCKET NUMBER NOT NULL,\n    LINK_CAPACITY NUMBER NOT NULL,\n    UNIT_COST_PER_MBPS_MONTHLY BINARY_DOUBLE NOT NULL,\n    PO_STATUS NUMBER(1,0) NOT NULL,\n    SITECODE VARCHAR2(255) NOT NULL,\n    OLD_SITECODE VARCHAR2(255) NOT NULL,\n    SITE_NAME VARCHAR2(255) NOT NULL,\n    PHASE VARCHAR2(255) NOT NULL,\n    ORIGIN VARCHAR2(255) NOT NULL,\n    HO_SITECODE VARCHAR2(255) NOT NULL,\n    HO_SITE_NAME VARCHAR2(255) NOT NULL,\n    REGION VARCHAR2(255) NOT NULL,\n    INTERNAL_REMARKS VARCHAR2(255) NOT NULL,\n    CEP_EXECUTION_DATE TIMESTAMP NULL,\n    POP_STATUS VARCHAR2(255) NOT NULL,\n    LOCK_IN_CEP_POP_REMARKS BINARY_DOUBLE NULL,\n    EXPIRE_DATE VARCHAR2(255) NULL,\n    TERMINATION_DATE TIMESTAMP NOT NULL,\n    TERMINATION_STATUS BINARY_DOUBLE NULL,\n    CLUSTER_NAME_CEP BINARY_DOUBLE NULL,\n    PAT_DATE TIMESTAMP NULL,\n    PAT_STATUS VARCHAR2(255) NOT NULL,\n    LAST_INVOICE VARCHAR2(255) NOT NULL,\n    LOCK_IN_STATUS VARCHAR2(255) NOT NULL,\n    FIBER_MASTER_PLAN VARCHAR2(255) NOT NULL,\n    EFFECTIVE_START_TIME TIMESTAMP NOT NULL,\n    EFFECTIVE_END_TIME TIMESTAMP NOT NULL,\n    IS_CURRENT NUMBER NOT NULL,\n    USER VARCHAR2(255) NOT NULL,\n    CONSTRAINT TABLE_LINK_PK PRIMARY KEY (LINK_ID)\n);', {'server': 'oracle', 'schema': None, 'table': 'table_link', 'columns': [{'name': 'LINK_ID', 'pandas_dtype': 'int64', 'sql_dtype': 'NUMBER', 'nullable': False, 'sample_value': '100000'}, {'name': 'LINK_CODE', 'pandas_dtype': 'object', 'sql_dtype': 'VARCHAR2(255)', 'nullable': False, 'sample_value': 'FHL01353'}, {'name': 'COST_CODE', 'pandas_dtype': 'object', 'sql_dtype': 'VARCHAR2(255)', 'nullable': False, 'sample_value': 'FHL*Robi-LP-001358-3*BH*1'}, {'name': 'VENDOR', 'pandas_dtype': 'object', 'sql_dtype': 'VARCHAR2(255...
+------------------------------------------

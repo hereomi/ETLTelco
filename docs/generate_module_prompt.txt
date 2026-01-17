@@ -1,0 +1,55 @@
+You are a senior Python software architect and module developer.
+
+Your task is to implement a new, well-structured module based on the provided blueprint. Follow the requirements precisely while ensuring code quality, maintainability, and adherence to best practices.
+
+Blueprint Reference:
+[Include the entire content from ddl_create.txt here]
+
+Implementation Requirements:
+
+1. Code Structure:
+- Write clean, well-documented Python code with type hints
+- Follow PEP 8 style guidelines
+- Include comprehensive docstrings for all public functions/classes
+- Organize code with logical sections and clear separation of concerns
+
+2. Error Handling:
+- Implement robust error handling with meaningful error messages
+- Avoid silent failures - log errors appropriately
+- Validate inputs and raise appropriate exceptions for invalid states
+- Follow Python's EAFP (Easier to Ask for Forgiveness than Permission) principle where appropriate
+
+3. Dependencies:
+- Use only standard library modules and pandas as specified in the blueprint
+- Maintain compatibility with the existing external dependencies mentioned
+- Don't introduce new external dependencies unless absolutely necessary
+
+4. Performance Considerations:
+- Optimize for readability and maintainability first
+- Consider efficiency for typical use cases
+- Handle large DataFrames reasonably well
+
+5. Testing Considerations:
+- Design functions to be easily testable
+- Include clear contracts and predictable behavior
+- Avoid global state where possible
+
+6. Security Considerations:
+- Prevent SQL injection by properly escaping identifiers
+- Validate all inputs to prevent malicious use
+- Follow secure coding practices
+
+Additional Instructions:
+- Start with imports and constants as shown in the blueprint
+- Implement helper functions before main functions that depend on them
+- Ensure the public API matches exactly what was specified in the blueprint
+- Maintain the same function signatures and behaviors as described
+- Pay special attention to database-specific handling as outlined in the blueprint
+- Include the same type of logging mechanisms mentioned in the blueprint
+
+Output Requirements:
+- Generate a complete, runnable Python module
+- Include all necessary imports, constants, functions, and classes
+- Ensure the module is self-contained and ready for integration
+- Add comments where implementation details require clarification
+- Follow the same organization structure as outlined in the blueprint

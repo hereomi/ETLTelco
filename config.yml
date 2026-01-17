@@ -1,0 +1,21 @@
+logging:
+  enabled: true
+  dir: "log"
+  max_repr_len: 2000
+  bucket_minutes: 10
+
+schema:
+  enabled: true
+  dir: "schema"
+
+csv:
+  dir: "csv"
+
+server:
+  mysql: "mysql+pymysql://root:PASSWORD_HERE@127.0.0.1:3306/akomi"
+  mssql: "mssql+pyodbc://sa:PASSWORD_HERE@127.0.0.1:1433/master?driver=ODBC+Driver+17+for+SQL+Server"
+  postgre: "postgresql+psycopg2://postgres:PASSWORD_HERE@127.0.0.1:5432/akomi"
+  oracle: "oracle+oracledb://akomi:PASSWORD_HERE@localhost:1521/?service_name=XEPDB1"
+  sqlite: "sqlite:///opflow.db"
+
+active_server: sqlite

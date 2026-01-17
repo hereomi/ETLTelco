@@ -1,0 +1,56 @@
+# DataAligner Default Configuration
+defaults:
+  # Validation behavior
+  validation_mode: "balanced"  # strict, balanced, fast
+  on_error: "coerce"          # coerce, raise, skip
+  failure_threshold: 0.1      # 10% max failure rate
+  
+  # Schema operations
+  add_missing_cols: false     # Auto-add new columns
+  validate_constraints: true  # Check PK/FK/unique
+  allow_schema_evolution: false
+  
+  # Performance settings
+  enable_caching: true
+  cache_size: 1000
+  chunk_size: 10000          # Rows per chunk for large DataFrames
+  parallel_processing: true
+  max_workers: 4
+  
+  # Outlier detection
+  outlier_detection: true
+  outlier_methods: ["isolation_forest", "z_score"]
+  outlier_threshold: 0.05    # 5% outlier tolerance
+  
+  # Diagnostics
+  collect_diagnostics: true
+  verbose_logging: false
+  print_summary: false
+  
+  # Type coercion settings
+  strict_integers: true      # Reject 3.5 -> int
+  strict_strings: true       # Enforce length limits
+  datetime_formats: ["ISO8601", "auto"]
+  
+# Preset configurations
+presets:
+  strict:
+    validation_mode: "strict"
+    failure_threshold: 0.01
+    strict_integers: true
+    strict_strings: true
+    outlier_detection: true
+    
+  fast:
+    validation_mode: "fast"
+    failure_threshold: 0.2
+    enable_caching: true
+    parallel_processing: true
+    collect_diagnostics: false
+    
+  safe:
+    validation_mode: "balanced"
+    add_missing_cols: true
+    allow_schema_evolution: true
+    collect_diagnostics: true
+    print_summary: true

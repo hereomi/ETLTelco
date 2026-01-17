@@ -1,0 +1,794 @@
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(5, 3), columns=['COST_ID', 'COST_CODE', 'VENDOR'])
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(5, 3)
+
+ COST_ID                  COST_CODE VENDOR
+    1001  SCL*Robi-LP-001855-1*BH*2    SCL
+    1002 SCL*Robi-LP-001855-6*MBH*1    SCL
+    1003 SCL*Robi-LP-001855-7*MBH*1    SCL
+    1004 SCL*Robi-LP-001855-7*MBH*2    SCL
+    1005 SCL*Robi-LP-001855-3*MBH*1    SCL
+------------------------------------------
+# JSON - semantic_type_COST_CODE
+
+{
+  "column": "COST_CODE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 5
+}
+------------------------------------------
+# JSON - semantic_type_VENDOR
+
+{
+  "column": "VENDOR",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 5
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "COST_ID": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "COST_CODE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "VENDOR": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (   COST_ID                   COST_CODE VENDOR
+0     1001   SCL*Robi-LP-001855-1*BH*2    SCL
+1     1002  SCL*Robi-LP-001855-6*MBH*1    SCL
+2     1003  SCL*Robi-LP-001855-7*MBH*1    SCL
+3     1004  SCL*Robi-LP-001855-7*MBH*2    SCL
+4     1005  SCL*Robi-LP-001855-3*MBH*1    SCL, {'COST_ID': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'COST_CODE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'VENDOR': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}})
+------------------------------------------
+# utils.crud_v2 - auto_insert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=oracle+oracledb://akomi:***@localhost:1521/?service_name=XEPDB1)
+  data: DataFrame(shape=(5, 3), columns=['COST_ID', 'COST_CODE', 'VENDOR'])
+  table: test_quota
+  chunk_size: 10000
+  add_missing_cols: False
+  failure_threshold: 1
+  semantic_meta: {'COST_CODE': 'STRING_OBJECT', 'VENDOR': 'STRING_OBJECT'}
+  trace_sql: False
+
+# utils.crud_v2 - auto_insert (SUCCESS)
+- outputs:
+  5
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(33, 16), columns=['COST_ID', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'MIN_CAPACITY', 'MAX_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'MINSLAB', 'LOCKIN_MONTHS', 'REMARKS', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'CREATED_BY'])
+  dtype: {'cost_id': 'integer', 'cost_code': 'string', 'vendor': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(33, 16)
+
+ COST_ID                  COST_CODE VENDOR         CONTRACT LINK_TYPE  BUCKET  MIN_CAPACITY  MAX_CAPACITY  UNIT_COST_PER_MBPS_MONTHLY  MINSLAB  LOCKIN_MONTHS          REMARKS EFFECTIVE_START_TIME EFFECTIVE_END_TIME  IS_CURRENT  CREATED_BY
+    1001  SCL*Robi-LP-001855-1*BH*2    SCL Robi-LP-001855-1        BH       2             1           100                       30.00    70000              1 No per mbps rate            9/12/2024           1/1/1970           1         NaN
+    1002 SCL*Robi-LP-001855-6*MBH*1    SCL Robi-LP-001855-6       MBH       1             1        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1003 SCL*Robi-LP-001855-7*MBH*1    SCL Robi-LP-001855-7       MBH       1         10000         20000                       78.26        0             12              NaN            9/12/2024           1/1/1970           1         NaN
+    1004 SCL*Robi-LP-001855-7*MBH*2    SCL Robi-LP-001855-7       MBH       2         10000         20000                       78.26        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1005 SCL*Robi-LP-001855-3*MBH*1    SCL Robi-LP-001855-3       MBH       1         10000        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+... (28 more rows)
+------------------------------------------
+# JSON - semantic_type_COST_CODE
+
+{
+  "column": "COST_CODE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_VENDOR
+
+{
+  "column": "VENDOR",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_CONTRACT
+
+{
+  "column": "CONTRACT",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_LINK_TYPE
+
+{
+  "column": "LINK_TYPE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_REMARKS
+
+{
+  "column": "REMARKS",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 8
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "COST_ID": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "COST_CODE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "VENDOR": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "CONTRACT": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "LINK_TYPE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "BUCKET": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MIN_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MAX_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "UNIT_COST_PER_MBPS_MONTHLY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MINSLAB": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "LOCKIN_MONTHS": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "REMARKS": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "EFFECTIVE_START_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "EFFECTIVE_END_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "IS_CURRENT": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "CREATED_BY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (    COST_ID  ... CREATED_BY
+0      1001  ...        NaN
+1      1002  ...        NaN
+2      1003  ...        NaN
+3      1004  ...        NaN
+4      1005  ...        NaN
+5      1006  ...        NaN
+6      1007  ...        NaN
+7      1008  ...        NaN
+8      1009  ...        NaN
+9      1010  ...        NaN
+10     1011  ...        NaN
+11     1012  ...        NaN
+12     1013  ...        NaN
+13     1014  ...        NaN
+14     1015  ...        NaN
+15     1016  ...        NaN
+16     1017  ...        NaN
+17     1018  ...        NaN
+18     1019  ...        NaN
+19     1020  ...        NaN
+20     1021  ...        NaN
+21     1022  ...        NaN
+22     1023  ...        NaN
+23     1024  ...        NaN
+24     1025  ...        NaN
+25     1026  ...        NaN
+26     1027  ...        NaN
+27     1028  ...        NaN
+28     1029  ...        NaN
+29     1030  ...        NaN
+30     1031  ...        NaN
+31     1032  ...        NaN
+32     1033  ...        NaN
+
+[33 rows x 16 columns], {'COST_ID': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'COST_CODE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'VENDOR': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'CONTRACT': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'LINK_TYPE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'BUCKET': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MIN_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MAX_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'UNIT_COST_PER_MBPS_MONTHLY': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MINSLAB': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'LOCKIN_MONTHS': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'REMARKS': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'EFFECTIVE_START_TIM...
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(33, 16), columns=['COST_ID', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'MIN_CAPACITY', 'MAX_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'MINSLAB', 'LOCKIN_MONTHS', 'REMARKS', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'CREATED_BY'])
+  dtype: {'cost_id': 'integer', 'cost_code': 'string', 'vendor': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(33, 16)
+
+ COST_ID                  COST_CODE VENDOR         CONTRACT LINK_TYPE  BUCKET  MIN_CAPACITY  MAX_CAPACITY  UNIT_COST_PER_MBPS_MONTHLY  MINSLAB  LOCKIN_MONTHS          REMARKS EFFECTIVE_START_TIME EFFECTIVE_END_TIME  IS_CURRENT  CREATED_BY
+    1001  SCL*Robi-LP-001855-1*BH*2    SCL Robi-LP-001855-1        BH       2             1           100                       30.00    70000              1 No per mbps rate            9/12/2024           1/1/1970           1         NaN
+    1002 SCL*Robi-LP-001855-6*MBH*1    SCL Robi-LP-001855-6       MBH       1             1        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1003 SCL*Robi-LP-001855-7*MBH*1    SCL Robi-LP-001855-7       MBH       1         10000         20000                       78.26        0             12              NaN            9/12/2024           1/1/1970           1         NaN
+    1004 SCL*Robi-LP-001855-7*MBH*2    SCL Robi-LP-001855-7       MBH       2         10000         20000                       78.26        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1005 SCL*Robi-LP-001855-3*MBH*1    SCL Robi-LP-001855-3       MBH       1         10000        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+... (28 more rows)
+------------------------------------------
+# JSON - semantic_type_COST_CODE
+
+{
+  "column": "COST_CODE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_VENDOR
+
+{
+  "column": "VENDOR",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_CONTRACT
+
+{
+  "column": "CONTRACT",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_LINK_TYPE
+
+{
+  "column": "LINK_TYPE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_REMARKS
+
+{
+  "column": "REMARKS",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 8
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "COST_ID": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "COST_CODE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "VENDOR": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "CONTRACT": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "LINK_TYPE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "BUCKET": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MIN_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MAX_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "UNIT_COST_PER_MBPS_MONTHLY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MINSLAB": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "LOCKIN_MONTHS": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "REMARKS": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "EFFECTIVE_START_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "EFFECTIVE_END_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "IS_CURRENT": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "CREATED_BY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (    COST_ID  ... CREATED_BY
+0      1001  ...        NaN
+1      1002  ...        NaN
+2      1003  ...        NaN
+3      1004  ...        NaN
+4      1005  ...        NaN
+5      1006  ...        NaN
+6      1007  ...        NaN
+7      1008  ...        NaN
+8      1009  ...        NaN
+9      1010  ...        NaN
+10     1011  ...        NaN
+11     1012  ...        NaN
+12     1013  ...        NaN
+13     1014  ...        NaN
+14     1015  ...        NaN
+15     1016  ...        NaN
+16     1017  ...        NaN
+17     1018  ...        NaN
+18     1019  ...        NaN
+19     1020  ...        NaN
+20     1021  ...        NaN
+21     1022  ...        NaN
+22     1023  ...        NaN
+23     1024  ...        NaN
+24     1025  ...        NaN
+25     1026  ...        NaN
+26     1027  ...        NaN
+27     1028  ...        NaN
+28     1029  ...        NaN
+29     1030  ...        NaN
+30     1031  ...        NaN
+31     1032  ...        NaN
+32     1033  ...        NaN
+
+[33 rows x 16 columns], {'COST_ID': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'COST_CODE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'VENDOR': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'CONTRACT': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'LINK_TYPE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'BUCKET': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MIN_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MAX_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'UNIT_COST_PER_MBPS_MONTHLY': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MINSLAB': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'LOCKIN_MONTHS': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'REMARKS': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'EFFECTIVE_START_TIM...
+------------------------------------------
+# utils.crud_v2 - auto_upsert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=oracle+oracledb://akomi:***@localhost:1521/?service_name=XEPDB1)
+  data: DataFrame(shape=(33, 16), columns=['COST_ID', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'MIN_CAPACITY', 'MAX_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'MINSLAB', 'LOCKIN_MONTHS', 'REMARKS', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'CREATED_BY'])
+  table: test_quota
+  constrain: ['COST_ID']
+  chunk: 10000
+  add_missing_cols: False
+  failure_threshold: 1
+  semantic_meta: {'COST_CODE': 'STRING_OBJECT', 'VENDOR': 'STRING_OBJECT', 'CONTRACT': 'STRING_OBJECT', 'LINK_TYPE': 'STRING_OBJECT', 'REMARKS': 'STRING_OBJECT'}
+  trace_sql: False
+
+# utils.crud_v2 - auto_upsert (FAILURE)
+- error: ValueError: constrain=['COST_ID'] does not match any primary/unique key on 'test_quota'. Upsert requires a unique constraint to be safe.
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(33, 16), columns=['COST_ID', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'MIN_CAPACITY', 'MAX_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'MINSLAB', 'LOCKIN_MONTHS', 'REMARKS', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'CREATED_BY'])
+  dtype: {'cost_id': 'integer', 'cost_code': 'string', 'vendor': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(33, 16)
+
+ COST_ID                  COST_CODE VENDOR         CONTRACT LINK_TYPE  BUCKET  MIN_CAPACITY  MAX_CAPACITY  UNIT_COST_PER_MBPS_MONTHLY  MINSLAB  LOCKIN_MONTHS          REMARKS EFFECTIVE_START_TIME EFFECTIVE_END_TIME  IS_CURRENT  CREATED_BY
+    1001  SCL*Robi-LP-001855-1*BH*2    SCL Robi-LP-001855-1        BH       2             1           100                       30.00    70000              1 No per mbps rate            9/12/2024           1/1/1970           1         NaN
+    1002 SCL*Robi-LP-001855-6*MBH*1    SCL Robi-LP-001855-6       MBH       1             1        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1003 SCL*Robi-LP-001855-7*MBH*1    SCL Robi-LP-001855-7       MBH       1         10000         20000                       78.26        0             12              NaN            9/12/2024           1/1/1970           1         NaN
+    1004 SCL*Robi-LP-001855-7*MBH*2    SCL Robi-LP-001855-7       MBH       2         10000         20000                       78.26        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1005 SCL*Robi-LP-001855-3*MBH*1    SCL Robi-LP-001855-3       MBH       1         10000        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+... (28 more rows)
+------------------------------------------
+# JSON - semantic_type_COST_CODE
+
+{
+  "column": "COST_CODE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_VENDOR
+
+{
+  "column": "VENDOR",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_CONTRACT
+
+{
+  "column": "CONTRACT",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_LINK_TYPE
+
+{
+  "column": "LINK_TYPE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_REMARKS
+
+{
+  "column": "REMARKS",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 8
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "COST_ID": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "COST_CODE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "VENDOR": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "CONTRACT": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "LINK_TYPE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "BUCKET": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MIN_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MAX_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "UNIT_COST_PER_MBPS_MONTHLY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MINSLAB": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "LOCKIN_MONTHS": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "REMARKS": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "EFFECTIVE_START_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "EFFECTIVE_END_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "IS_CURRENT": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "CREATED_BY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (    COST_ID  ... CREATED_BY
+0      1001  ...        NaN
+1      1002  ...        NaN
+2      1003  ...        NaN
+3      1004  ...        NaN
+4      1005  ...        NaN
+5      1006  ...        NaN
+6      1007  ...        NaN
+7      1008  ...        NaN
+8      1009  ...        NaN
+9      1010  ...        NaN
+10     1011  ...        NaN
+11     1012  ...        NaN
+12     1013  ...        NaN
+13     1014  ...        NaN
+14     1015  ...        NaN
+15     1016  ...        NaN
+16     1017  ...        NaN
+17     1018  ...        NaN
+18     1019  ...        NaN
+19     1020  ...        NaN
+20     1021  ...        NaN
+21     1022  ...        NaN
+22     1023  ...        NaN
+23     1024  ...        NaN
+24     1025  ...        NaN
+25     1026  ...        NaN
+26     1027  ...        NaN
+27     1028  ...        NaN
+28     1029  ...        NaN
+29     1030  ...        NaN
+30     1031  ...        NaN
+31     1032  ...        NaN
+32     1033  ...        NaN
+
+[33 rows x 16 columns], {'COST_ID': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'COST_CODE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'VENDOR': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'CONTRACT': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'LINK_TYPE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'BUCKET': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MIN_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MAX_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'UNIT_COST_PER_MBPS_MONTHLY': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MINSLAB': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'LOCKIN_MONTHS': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'REMARKS': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'EFFECTIVE_START_TIM...
+------------------------------------------
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(33, 16), columns=['COST_ID', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'MIN_CAPACITY', 'MAX_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'MINSLAB', 'LOCKIN_MONTHS', 'REMARKS', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'CREATED_BY'])
+  dtype: {'cost_id': 'integer', 'cost_code': 'string', 'vendor': 'string'}
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(33, 16)
+
+ COST_ID                  COST_CODE VENDOR         CONTRACT LINK_TYPE  BUCKET  MIN_CAPACITY  MAX_CAPACITY  UNIT_COST_PER_MBPS_MONTHLY  MINSLAB  LOCKIN_MONTHS          REMARKS EFFECTIVE_START_TIME EFFECTIVE_END_TIME  IS_CURRENT  CREATED_BY
+    1001  SCL*Robi-LP-001855-1*BH*2    SCL Robi-LP-001855-1        BH       2             1           100                       30.00    70000              1 No per mbps rate            9/12/2024           1/1/1970           1         NaN
+    1002 SCL*Robi-LP-001855-6*MBH*1    SCL Robi-LP-001855-6       MBH       1             1        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1003 SCL*Robi-LP-001855-7*MBH*1    SCL Robi-LP-001855-7       MBH       1         10000         20000                       78.26        0             12              NaN            9/12/2024           1/1/1970           1         NaN
+    1004 SCL*Robi-LP-001855-7*MBH*2    SCL Robi-LP-001855-7       MBH       2         10000         20000                       78.26        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+    1005 SCL*Robi-LP-001855-3*MBH*1    SCL Robi-LP-001855-3       MBH       1         10000        100000                       60.00        0             24              NaN            9/12/2024           1/1/1970           1         NaN
+... (28 more rows)
+------------------------------------------
+# JSON - semantic_type_COST_CODE
+
+{
+  "column": "COST_CODE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_VENDOR
+
+{
+  "column": "VENDOR",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_CONTRACT
+
+{
+  "column": "CONTRACT",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_LINK_TYPE
+
+{
+  "column": "LINK_TYPE",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_REMARKS
+
+{
+  "column": "REMARKS",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 8
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "COST_ID": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "COST_CODE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "VENDOR": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "CONTRACT": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "LINK_TYPE": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "BUCKET": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MIN_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "MAX_CAPACITY": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "UNIT_COST_PER_MBPS_MONTHLY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "MINSLAB": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "LOCKIN_MONTHS": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "REMARKS": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "EFFECTIVE_START_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "EFFECTIVE_END_TIME": {
+    "input_dtype": "object",
+    "output_dtype": "datetime64[ns]"
+  },
+  "IS_CURRENT": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "CREATED_BY": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (    COST_ID  ... CREATED_BY
+0      1001  ...        NaN
+1      1002  ...        NaN
+2      1003  ...        NaN
+3      1004  ...        NaN
+4      1005  ...        NaN
+5      1006  ...        NaN
+6      1007  ...        NaN
+7      1008  ...        NaN
+8      1009  ...        NaN
+9      1010  ...        NaN
+10     1011  ...        NaN
+11     1012  ...        NaN
+12     1013  ...        NaN
+13     1014  ...        NaN
+14     1015  ...        NaN
+15     1016  ...        NaN
+16     1017  ...        NaN
+17     1018  ...        NaN
+18     1019  ...        NaN
+19     1020  ...        NaN
+20     1021  ...        NaN
+21     1022  ...        NaN
+22     1023  ...        NaN
+23     1024  ...        NaN
+24     1025  ...        NaN
+25     1026  ...        NaN
+26     1027  ...        NaN
+27     1028  ...        NaN
+28     1029  ...        NaN
+29     1030  ...        NaN
+30     1031  ...        NaN
+31     1032  ...        NaN
+32     1033  ...        NaN
+
+[33 rows x 16 columns], {'COST_ID': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'COST_CODE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'VENDOR': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'CONTRACT': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'LINK_TYPE': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'BUCKET': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MIN_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'MAX_CAPACITY': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'UNIT_COST_PER_MBPS_MONTHLY': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'MINSLAB': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'LOCKIN_MONTHS': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'REMARKS': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'EFFECTIVE_START_TIM...
+------------------------------------------
+# utils.crud_v2 - auto_upsert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=oracle+oracledb://akomi:***@localhost:1521/?service_name=XEPDB1)
+  data: DataFrame(shape=(33, 16), columns=['COST_ID', 'COST_CODE', 'VENDOR', 'CONTRACT', 'LINK_TYPE', 'BUCKET', 'MIN_CAPACITY', 'MAX_CAPACITY', 'UNIT_COST_PER_MBPS_MONTHLY', 'MINSLAB', 'LOCKIN_MONTHS', 'REMARKS', 'EFFECTIVE_START_TIME', 'EFFECTIVE_END_TIME', 'IS_CURRENT', 'CREATED_BY'])
+  table: test_quota
+  constrain: ['COST_ID']
+  chunk: 10000
+  add_missing_cols: True
+  failure_threshold: 1
+  semantic_meta: {'COST_CODE': 'STRING_OBJECT', 'VENDOR': 'STRING_OBJECT', 'CONTRACT': 'STRING_OBJECT', 'LINK_TYPE': 'STRING_OBJECT', 'REMARKS': 'STRING_OBJECT'}
+  trace_sql: False
+
+# utils.crud_v2 - auto_upsert (FAILURE)
+- error: ValueError: constrain=['COST_ID'] does not match any primary/unique key on 'test_quota'. Upsert requires a unique constraint to be safe.
+------------------------------------------

@@ -1,0 +1,133 @@
+{
+  "server": "oracle",
+  "schema": null,
+  "table": "test_quota",
+  "columns": [
+    {
+      "name": "COST_ID",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1001"
+    },
+    {
+      "name": "COST_CODE",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "SCL*Robi-LP-001855-1*BH*2",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "VENDOR",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "SCL",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "CONTRACT",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "Robi-LP-001855-1",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "LINK_TYPE",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "False",
+      "sample_value": "BH",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "BUCKET",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "2"
+    },
+    {
+      "name": "MIN_CAPACITY",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1"
+    },
+    {
+      "name": "MAX_CAPACITY",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "100"
+    },
+    {
+      "name": "UNIT_COST_PER_MBPS_MONTHLY",
+      "pandas_dtype": "float64",
+      "sql_dtype": "BINARY_DOUBLE",
+      "nullable": "False",
+      "sample_value": "30.0"
+    },
+    {
+      "name": "MINSLAB",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "70000"
+    },
+    {
+      "name": "LOCKIN_MONTHS",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1"
+    },
+    {
+      "name": "REMARKS",
+      "pandas_dtype": "object",
+      "sql_dtype": "VARCHAR2(255)",
+      "nullable": "True",
+      "sample_value": "No per mbps rate",
+      "semantic_type": "STRING_OBJECT"
+    },
+    {
+      "name": "EFFECTIVE_START_TIME",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "False",
+      "sample_value": "2024-09-12 00:00:00"
+    },
+    {
+      "name": "EFFECTIVE_END_TIME",
+      "pandas_dtype": "datetime64[ns]",
+      "sql_dtype": "TIMESTAMP",
+      "nullable": "False",
+      "sample_value": "1970-01-01 00:00:00"
+    },
+    {
+      "name": "IS_CURRENT",
+      "pandas_dtype": "int64",
+      "sql_dtype": "NUMBER",
+      "nullable": "False",
+      "sample_value": "1"
+    },
+    {
+      "name": "CREATED_BY",
+      "pandas_dtype": "float64",
+      "sql_dtype": "BINARY_DOUBLE",
+      "nullable": "True",
+      "sample_value": null
+    }
+  ],
+  "primary_key": [
+    "COST_ID"
+  ],
+  "foreign_keys": [],
+  "unique_constraints": [],
+  "autoincrement": null,
+  "column_mapping": null,
+  "row_count": 33,
+  "column_count": 16
+}

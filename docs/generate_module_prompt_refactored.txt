@@ -1,0 +1,121 @@
+You are a senior Python software architect and module developer.
+
+Your task is to implement a new, well-structured module based on the detailed blueprint provided below. I will guide you through a chain of thought approach to ensure proper implementation.
+
+BLUEPRINT CONTENT:
+
+A. Module Purpose
+This module generates SQL CREATE TABLE DDL statements and schema metadata from pandas DataFrames or CSV files. It handles database-specific type mappings, column name sanitization, constraint generation (PK, FK, unique), and auto-increment columns across multiple database platforms (Oracle, PostgreSQL, MySQL, SQL Server, SQLite).
+
+B. Public Interface
+df_ddl - Main function to generate DDL and metadata from DataFrame or CSV
+Inputs: input_df_or_csv (str or DataFrame), table name, server type, schema options (pk, fk, unique, etc.), varchar sizes, casting options
+Outputs: Tuple of (DataFrame, DDL string, metadata dict) or (DataFrame, DDL, metadata, dtype metadata)
+Side effects: Logs DDL and metadata, may rename columns if sanitize/rename_column enabled
+
+generate_sqlalchemy_model - Creates SQLAlchemy ORM model from DataFrame
+Inputs: DataFrame, table name, optional class name, sanitization/casting flags
+Outputs: String representation of SQLAlchemy model class
+Side effects: None
+
+df_ddl_create - Creates table and loads data (incomplete implementation)
+Inputs: Connection dictionary, DataFrame, table options
+Outputs: Dictionary with processing results
+Side effects: Creates schema directory, processes data with casting and sanitization
+
+C. Internal Components
+sanitize_cols - Sanitizes column names for SQL compatibility
+_truncate_identifier - Truncates identifiers to max length (Oracle-specific)
+escape_identifier - Escapes SQL identifiers per database dialect
+_normalize_dtype - Normalizes pandas dtypes to canonical form
+_object_sql_type - Maps semantic object types to SQL types
+get_sql_type - Maps pandas dtypes to SQL types per database dialect
+normalize_cols - Normalizes column input to list
+build_pk_constraint - Builds primary key constraint SQL
+build_fk_constraint - Builds foreign key constraint SQL
+build_unique_constraint - Builds unique constraint SQL
+_build_autoincrement_clause - Builds auto-increment clause per database
+get_table_name - Formats table name with schema
+build_create_table_statement - Core function to build CREATE TABLE statement
+build_schema_json - Builds schema metadata JSON
+get_pk, profile_dataframe - Imported from data_profiler for PK detection
+cast_df - Imported from casting module for type casting
+
+D. Control Flow
+1. Validate inputs (server type, table name, DataFrame not empty)
+2. Check for reserved words/invalid characters in column names
+3. Apply sanitization/column renaming if requested
+4. Apply type casting if enabled
+5. Validate constraints (PK/FK/unique columns exist)
+6. Generate DDL statement using database-specific mappings
+7. Generate schema metadata
+8. Log results (DDL and metadata)
+9. Return processed DataFrame, DDL string, and metadata
+
+E. State & Data Model
+RESERVED_WORDS - Dict mapping database dialects to reserved keywords
+DTYPE_MAP - Dict mapping database dialects to pandas-to-SQL type mappings
+ORACLE_MAX_IDENTIFIER - Constant for identifier length limits
+DEFAULT_VARCHAR_SIZE - Default size for VARCHAR columns
+dtype_semantics - Dict mapping column names to semantic types (STRING_OBJECT, STRUCTURED_OBJECT, etc.)
+
+F. External Dependencies
+pandas - Used throughout for DataFrame operations
+sqlalchemy - Optional dependency for database operations
+logger - Internal module for logging decorated functions
+casting - Internal module for type casting (cast_df function)
+data_profiler - Internal module for data profiling (get_pk, profile_dataframe)
+
+G. Implicit Contracts & Assumptions
+- Input DataFrame must have valid column names that can be converted to strings
+- CSV files must be readable by pandas.read_csv
+- Database server names must match keys in DTYPE_MAP and RESERVED_WORDS
+- Semantic type detection from casting module is reliable
+- Column names that begin with digits are prefixed with underscore
+- Reserved words are detected case-insensitively
+
+H. Failure Modes
+- Silent logging failures in type mapping (try/except pass pattern)
+- Invalid server type raises ValueError
+- Empty DataFrame raises ValueError
+- Invalid table name raises ValueError
+- Missing columns in constraints raise ValueError
+- Reserved/invalid column names raise ValueError unless sanitized
+- Import errors for optional SQLAlchemy are handled gracefully
+
+I. Blueprint for Re-implementation
+Folder structure: etl project with separate modules for different concerns
+Module boundaries: 
+- ddl_create: DDL generation logic
+- casting: Type casting and inference
+- data_profiler: Data analysis and PK detection
+- logger: Logging functionality
+Clear separation of concerns:
+- Core DDL generation separated from file I/O
+- Database-specific logic encapsulated in mappings
+- Column sanitization isolated in helper functions
+Minimal public API surface: df_ddl as main entry point, plus auxiliary functions
+
+IMPLEMENTATION CHAIN OF THOUGHT:
+
+Step 1: Think about the required imports and constants based on the blueprint
+- What imports are needed for this module?
+- What constants should be defined first?
+
+Step 2: Consider the helper functions in the order they should be implemented
+- Which helpers are depended upon by others?
+- How should each helper function be implemented?
+
+Step 3: Plan the main functions implementation
+- How should df_ddl be structured following the control flow?
+- What about generate_sqlalchemy_model and df_ddl_create?
+
+Step 4: Consider error handling and validation throughout
+- Where should validation occur?
+- How should errors be handled consistently?
+
+Step 5: Think about type hints and documentation
+- How should functions be typed according to the blueprint?
+- What documentation is needed?
+
+Now implement the complete module following this chain of thought. Start with imports and constants, then move to helpers, and finish with the public interface functions. Make sure your implementation matches the blueprint specifications exactly while following Python best practices.

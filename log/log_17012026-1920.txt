@@ -1,0 +1,122 @@
+# utils.data_profiler - profile_dataframe (START)
+- inputs:
+  df: DataFrame(shape=(2, 3), columns=['id', 'name', 'value'])
+
+# utils.data_profiler - profile_dataframe (SUCCESS)
+- outputs:
+  DataFrame(shape=(3, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+------------------------------------------
+# utils.data_profiler - get_pk (START)
+- inputs:
+  df: DataFrame(shape=(2, 3), columns=['id', 'name', 'value'])
+  dfinfo: DataFrame(shape=(3, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+
+# JSON - pk_detection
+
+{
+  "pk_name": "pk",
+  "components": [
+    "id"
+  ],
+  "is_unique": true,
+  "non_null_rows": 0,
+  "warnings": []
+}
+------------------------------------------
+# utils.data_profiler - get_pk (SUCCESS)
+- outputs:
+  (   id   name  value pk
+0   1  Alice     10  1
+1   2    Bob     20  2, 'pk', {'components': ['id'], 'is_unique': True, 'non_null_pk_rows': 0})
+------------------------------------------
+# utils.data_profiler - profile_dataframe (START)
+- inputs:
+  df: DataFrame(shape=(2, 2), columns=['name', 'value'])
+
+# utils.data_profiler - profile_dataframe (SUCCESS)
+- outputs:
+  DataFrame(shape=(2, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+------------------------------------------
+# utils.data_profiler - get_pk (START)
+- inputs:
+  df: DataFrame(shape=(2, 2), columns=['name', 'value'])
+  dfinfo: DataFrame(shape=(2, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+
+# JSON - pk_detection
+
+{
+  "pk_name": "pk",
+  "components": [
+    "value"
+  ],
+  "is_unique": true,
+  "non_null_rows": 0,
+  "warnings": []
+}
+------------------------------------------
+# utils.data_profiler - get_pk (SUCCESS)
+- outputs:
+  (    name  value  pk
+0  Alice     10  10
+1  Alice     20  20, 'pk', {'components': ['value'], 'is_unique': True, 'non_null_pk_rows': 0})
+------------------------------------------
+# utils.data_profiler - profile_dataframe (START)
+- inputs:
+  df: DataFrame(shape=(1, 2), columns=['id', 'val'])
+
+# utils.data_profiler - profile_dataframe (SUCCESS)
+- outputs:
+  DataFrame(shape=(2, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+------------------------------------------
+# utils.data_profiler - get_pk (START)
+- inputs:
+  df: DataFrame(shape=(1, 2), columns=['id', 'val'])
+  dfinfo: DataFrame(shape=(2, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+
+# JSON - pk_detection
+
+{
+  "pk_name": "pk",
+  "components": [
+    "id"
+  ],
+  "is_unique": true,
+  "non_null_rows": 0,
+  "warnings": []
+}
+------------------------------------------
+# utils.data_profiler - get_pk (SUCCESS)
+- outputs:
+  (   id  val pk
+0   1  100  1, 'pk', {'components': ['id'], 'is_unique': True, 'non_null_pk_rows': 0})
+------------------------------------------
+# utils.data_profiler - profile_dataframe (START)
+- inputs:
+  df: DataFrame(shape=(1, 2), columns=['id', 'val'])
+
+# utils.data_profiler - profile_dataframe (SUCCESS)
+- outputs:
+  DataFrame(shape=(2, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+------------------------------------------
+# utils.data_profiler - get_pk (START)
+- inputs:
+  df: DataFrame(shape=(1, 2), columns=['id', 'val'])
+  dfinfo: DataFrame(shape=(2, 9), columns=['Column', 'Data Type', 'Is Categorical', 'All Unique', 'Is Datetime', 'Count of None', 'Data Length (Non-Null)', '% of None', 'Total Unique Data Points'])
+
+# JSON - pk_detection
+
+{
+  "pk_name": "pk",
+  "components": [
+    "id"
+  ],
+  "is_unique": true,
+  "non_null_rows": 0,
+  "warnings": []
+}
+------------------------------------------
+# utils.data_profiler - get_pk (SUCCESS)
+- outputs:
+  (   id  val pk
+0   1  100  1, 'pk', {'components': ['id'], 'is_unique': True, 'non_null_pk_rows': 0})
+------------------------------------------

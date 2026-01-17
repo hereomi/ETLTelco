@@ -1,0 +1,109 @@
+You are a senior Python software architect specializing in Oracle database integrations.
+
+Your task is to implement a focused, well-structured Oracle-specific DDL generation module based on the provided blueprint. I will guide you through a chain of thought approach to ensure proper Oracle implementation.
+
+ORACLE-SPECIFIC MODULE BLUEPRINT:
+
+A. Module Purpose
+This module generates Oracle SQL CREATE TABLE DDL statements and schema metadata from pandas DataFrames. It handles Oracle-specific type mappings (NUMBER, VARCHAR2, TIMESTAMP, etc.), column name sanitization for Oracle identifiers, constraint generation (PK, FK, unique), and Oracle sequence-based auto-increment columns.
+
+B. Public Interface
+oracle_df_ddl - Main function to generate Oracle-specific DDL and metadata from DataFrame
+Inputs: df (DataFrame), table name, schema options (pk, fk, unique, etc.), varchar sizes, casting options
+Outputs: Tuple of (DataFrame, DDL string, metadata dict) or (DataFrame, DDL, metadata, dtype metadata)
+Side effects: Logs DDL and metadata, may rename columns if sanitize/rename_column enabled
+
+oracle_generate_model - Creates SQLAlchemy ORM model for Oracle
+Inputs: DataFrame, table name, optional class name, sanitization/casting flags
+Outputs: String representation of SQLAlchemy model class for Oracle
+Side effects: None
+
+C. Internal Components
+sanitize_oracle_cols - Sanitizes column names for Oracle SQL compatibility
+_truncate_identifier - Truncates identifiers to Oracle's 30-char limit (ORACLE_MAX_IDENTIFIER = 30)
+escape_oracle_identifier - Properly escapes Oracle identifiers
+_normalize_dtype - Normalizes pandas dtypes to canonical form
+_oracle_object_sql_type - Maps semantic object types to Oracle-specific types
+get_oracle_sql_type - Maps pandas dtypes to Oracle SQL types
+normalize_cols - Normalizes column input to list
+build_oracle_pk_constraint - Builds Oracle primary key constraint SQL
+build_oracle_fk_constraint - Builds Oracle foreign key constraint SQL
+build_oracle_unique_constraint - Builds Oracle unique constraint SQL
+_build_oracle_sequence_trigger - Builds Oracle sequence and trigger for auto-increment
+get_oracle_table_name - Formats table name with schema for Oracle
+build_oracle_create_table_statement - Core function to build Oracle CREATE TABLE statement
+build_oracle_schema_json - Builds schema metadata JSON for Oracle
+get_pk, profile_dataframe - Imported from data_profiler for PK detection
+cast_df - Imported from casting module for type casting
+
+D. Control Flow
+1. Validate inputs (table name, DataFrame not empty, Oracle compatibility)
+2. Check for Oracle reserved words/invalid characters in column names
+3. Apply Oracle-specific sanitization/column renaming if requested
+4. Apply type casting if enabled
+5. Validate Oracle constraints (PK/FK/unique columns exist)
+6. Generate Oracle DDL statement using Oracle-specific mappings
+7. Generate Oracle-specific schema metadata
+8. Log results (DDL and metadata)
+9. Return processed DataFrame, Oracle DDL string, and metadata
+
+E. State & Data Model
+ORACLE_RESERVED_WORDS - Dict mapping Oracle-specific reserved keywords
+ORACLE_DTYPE_MAP - Dict mapping pandas-to-Oracle SQL type mappings
+ORACLE_MAX_IDENTIFIER - Constant for Oracle identifier length limits (30 chars)
+DEFAULT_VARCHAR_SIZE - Default size for Oracle VARCHAR2 columns (255)
+dtype_semantics - Dict mapping column names to semantic types (STRING_OBJECT, STRUCTURED_OBJECT, etc.)
+
+F. External Dependencies
+pandas - Used throughout for DataFrame operations
+sqlalchemy - Optional dependency for database operations
+logger - Internal module for logging decorated functions
+casting - Internal module for type casting (cast_df function)
+data_profiler - Internal module for data profiling (get_pk, profile_dataframe)
+
+G. Oracle-Specific Contracts & Assumptions
+- Oracle identifiers must be ≤ 30 characters
+- Oracle reserved words must be avoided
+- Oracle VARCHAR2 max size considerations
+- Oracle NUMBER precision and scale handling
+- Oracle TIMESTAMP with timezone options
+- Oracle sequence and trigger for auto-increment columns
+
+H. Oracle Failure Modes
+- Oracle identifier length violations (over 30 chars)
+- Oracle reserved word usage in identifiers
+- Oracle-specific type mapping failures
+- Invalid Oracle DDL syntax generation
+- Oracle sequence/trigger creation issues
+
+I. Oracle Implementation Design
+Focus on Oracle-specific requirements:
+- Identifier length restrictions
+- Oracle data type mappings
+- Oracle constraint syntax
+- Oracle auto-increment patterns (sequence + trigger)
+- Oracle reserved words handling
+
+IMPLEMENTATION CHAIN OF THOUGHT:
+
+Step 1: Think about the required imports and Oracle-specific constants
+- What imports are needed for this Oracle module?
+- What Oracle-specific constants should be defined first?
+
+Step 2: Consider the Oracle-specific helper functions in the order they should be implemented
+- Which Oracle helpers are depended upon by others?
+- How should each helper function handle Oracle-specific requirements?
+
+Step 3: Plan the Oracle-specific main functions implementation
+- How should oracle_df_ddl be structured following the Oracle control flow?
+- What about oracle_generate_model?
+
+Step 4: Consider Oracle error handling and validation throughout
+- Where should Oracle-specific validation occur?
+- How should Oracle errors be handled consistently?
+
+Step 5: Think about type hints and Oracle-specific documentation
+- How should functions be typed according to Oracle requirements?
+- What Oracle-specific documentation is needed?
+
+Now implement the complete Oracle-focused module following this chain of thought. Focus on Oracle-specific implementations that adhere to Oracle database requirements while following Python best practices.
