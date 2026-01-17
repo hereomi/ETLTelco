@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# Custom ignores for public upload
+__*
+csv/
+# Exclude local DB files
+*.db
+*.db-journal
+# Exclude log and temporary test files
+*.log
+*_output*.txt
+auto_update_test_quota.txt
