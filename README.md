@@ -1,12 +1,12 @@
-# EtlTele
+# ETLTelco
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Stars](https://img.shields.io/github/stars/yourusername/EtlTele.svg?style=social)](https://github.com/yourusername/EtlTele)
+[![Stars](https://img.shields.io/github/stars/yourusername/ETLTelco.svg?style=social)](https://github.com/yourusername/ETLTelco)
 
-**EtlTele** is a high-performance, SQL-intelligent ETL engine designed to bridge the gap between messy real-world data and structured database systems. It doesn't just move data; it sanitizes, heals, and evolves your database schema automatically.
+**ETLTelco** is a high-performance, SQL-intelligent ETL engine designed to bridge the gap between messy real-world data and structured database systems. It doesn't just move data; it sanitizes, heals, and evolves your database schema automatically.
 
-Whether you are dealing with legacy Oracle systems, massive Postgres clusters, or agile SQLite files, EtlTele ensures your data lands perfectly every time.
+Whether you are dealing with legacy Oracle systems, massive Postgres clusters, or agile SQLite files, ETLTelco ensures your data lands perfectly every time.
 
 ---
 
@@ -14,7 +14,7 @@ Whether you are dealing with legacy Oracle systems, massive Postgres clusters, o
 
 ### Robust Data Sanitization
 
-Stop hidden characters from breaking your pipeline. EtlTele includes a specialized cleaning layer that targets:
+Stop hidden characters from breaking your pipeline. ETLTelco includes a specialized cleaning layer that targets:
 
 - **Zero-Width Villains**: Strips BOM (`\ufeff`), zero-width spaces, and non-breaking chars.
 - **Visual Homoglyphs**: Automatically converts look-alike characters from mixed alphabets (e.g., Cyrillic 'А' ➔ Latin 'A').
@@ -31,7 +31,7 @@ Forget manual schema definitions. Our casting engine uses:
 ### Auto-DDL & Schema Evolution
 
 - **Dialect-Aware**: Generates optimized DDL for **Oracle, PostgreSQL, SQLite, MySQL, and MSSQL**.
-- **Self-Healing Schema**: New columns in your source file? EtlTele automatically executes `ALTER TABLE` to keep your database in sync.
+- **Self-Healing Schema**: New columns in your source file? ETLTelco automatically executes `ALTER TABLE` to keep your database in sync.
 - **Primary Key Intelligence**: Automatically derives or verifies PK constraints across all supported dialects.
 
 ### SQL Intelligence (Where-Build)
@@ -132,7 +132,7 @@ flowchart TD
 
 ## Multi-Database Compatibility
 
-EtlTele supports the following dialects out of the box:
+ETLTelco supports the following dialects out of the box:
 
 - **Oracle**: Optimized `MERGE` and `VARCHAR2` handling.
 - **PostgreSQL**: Native `JSONB` support and BigInt optimization.
