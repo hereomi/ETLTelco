@@ -1,0 +1,4 @@
+Operational logic: this module is empty and exists only to make the utils package importable.
+Real-world problem addressed: none beyond satisfying Python package semantics so that submodules can be imported as tetl.utils.*.
+Control flow: there are no statements or functions to execute.
+Failure modes: there are none because no computation occurs.

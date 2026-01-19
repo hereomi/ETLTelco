@@ -1,3 +1,24 @@
+"""
+Core Problem: Provide reusable, configurable cleaning utilities to normalize text-rich pandas DataFrames ahead of ETL tasks.
+
+Execution Flow: Narrative: The module defines a dataclass-backed cleaning policy and applies it at three granularities: scalars, Series, and entire DataFrames, so one can normalize whitespace, canonicalize Unicode/homoglyphs, strip control characters, trim, and optionally strip special chars. Scalar cleaning short-circuits non-string/NAN inputs, while Series cleaning vectorizes replacements before applying regex or Unicode logic; header cleaning sanitizes column names to DB-safe identifiers and robust_clean stitches headers with selected object/string columns. quick_clean just invokes robust_clean with defaults tuned for BOM/trim/smart-character handling.
+
+Steps:
+
+Instantiate CleaningConfig defaults (strip BOM, normalize Unicode via NFKC, handle NA, etc.), using custom_map for common replacements/homoglyph fixes.
+clean_string returns early for None/NaN or non-strings, else normalizes Unicode, applies custom replacements, removes control chars optionally, strips special characters optionally, then trims.
+clean_series short-circuits non-string/object dtype, converts to str (handling ‘nan’/‘None’/‘NAT’ as NaN when handle_na), vectorizes the map replacements, optionally applies Unicode normalization and control-character filtering via .apply, strips special characters via regex, then trims.
+clean_headers runs every column through clean_string, lowercases if configured, replaces non-alphanumeric characters with underscores, collapses duplicates, and assigns sanitized names back to the DataFrame.
+robust_clean calls clean_headers, selects the requested columns or all object/string columns, and overwrites each with clean_series, returning the cleaned DataFrame; quick_clean is a thin wrapper using the default config.
+Implicit Contracts: pandas DataFrames/Series present, object/string columns expected for cleaning, numpy imported for NaN handling, Unicode normalization available via unicodedata, and config defaults assume BOM and smart punctuation replacement is desirable for telecom datasets.
+
+Failure Modes: Non-string columns are coerced to strings during clean_series, so dtype information is lost and numeric data may become 'nan'; handle_na default true masks NaNs as None silently; large Series cleaning with .apply per-row introduces performance degradation; aggressive remove_special_chars may strip legitimate DB characters unexpectedly.
+
+Obscure Choices: custom_map aggressively replaces homoglyphs and Unicode punctuation before other rules, implying a priority on ASCII-normalized identifiers; clean_series always casts to string even when handle_na is False, which can still morph numeric nan-like tokens into 'nan'; header cleaning enforces DB-safe names by collapsing repeated underscores and stripping leading/trailing underscores.
+
+"""
+
+
 import re
 import unicodedata
 import pandas as pd
@@ -76,124 +97,94 @@ class CleaningConfig:
     })
 
 def clean_string(text: Any, config: Optional[CleaningConfig] = None) -> Any:
-    """
-    Robustly cleans a single value.
-    
-    Args:
-        text: The value to clean (can be any type).
-        config: Optional CleaningConfig instance.
-    """
-    if config is None:
-        config = CleaningConfig()
-        
+    """Robustly cleans a single value."""
+    if config is None: config = CleaningConfig()
     if text is None or (isinstance(text, float) and np.isnan(text)):
         return None if config.handle_na else text
-        
-    if not isinstance(text, str):
-        return text
-    
-    # 1. Unicode Normalization (NFKC is usually best for data engineering)
-    # It converts homoglyphs like the Cyrillic 'А' to Latin 'A' if they are canonicallly equivalent
+    if not isinstance(text, str): return text
     if config.normalize_unicode:
+        # type: ignore
         text = unicodedata.normalize(config.normalize_unicode, text)
-        
-    # 2. Custom Map Replacements
     for old, new in config.custom_map.items():
         text = text.replace(old, new)
-        
-    # 3. Control Characters
     if config.remove_control_chars:
-        # Keep \n, \r, \t
         text = "".join(ch for ch in text if ch in "\n\r\t" or unicodedata.category(ch)[0] != "C")
-        
-    # 4. Remove Special Characters (Aggressive)
     if config.remove_special_chars:
         text = re.sub(r'[^\w\s\n\r\t]', '', text)
-        
-    # 5. Trim
-    if config.trim:
-        text = text.strip()
-        
+    if config.trim: text = text.strip()
     return text
 
 def clean_series(s: pd.Series, config: Optional[CleaningConfig] = None) -> pd.Series:
-    """
-    Robustly cleans a pandas Series using vectorized operations where possible.
-    """
-    if config is None:
-        config = CleaningConfig()
-        
-    # Only process strings
+    """Robustly cleans a pandas Series using vectorized operations."""
+    if config is None: config = CleaningConfig()
     if not pd.api.types.is_object_dtype(s.dtype) and not pd.api.types.is_string_dtype(s.dtype):
         return s
-        
-    # 1. Basic preprocessing (convert to string if mixed, handle NA)
-    working_s = s.astype(str).replace(['nan', 'None', 'NAT'], np.nan) if config.handle_na else s.astype(str)
     
-    # 2. Vectorized Replacements from Map
+    # 1. NA Handling (avoid unconditional astype(str))
+    working_s = s.copy()
+    if config.handle_na:
+        working_s = working_s.replace(['nan', 'None', 'NAT', 'NAN', 'null'], np.nan)
+        
+    # 2. Vectorized operations on string part
+    str_part = working_s.astype(str).where(working_s.notna())
+    
+    # Custom Map Replacements
     for old, new in config.custom_map.items():
-        working_s = working_s.str.replace(old, new, regex=False)
+        str_part = str_part.str.replace(old, new, regex=False)
         
-    # 3. Unicode Normalization (not directly vectorized in pandas, but can be done via map)
+    # Unicode Normalization
     if config.normalize_unicode:
-        working_s = working_s.apply(lambda x: unicodedata.normalize(config.normalize_unicode, x) if isinstance(x, str) else x)
+        str_part = str_part.str.normalize(config.normalize_unicode)
         
-    # 4. Control Characters and Regex steps
+    # Control Characters (C0 and C1 control blocks, preserving \n\r\t)
     if config.remove_control_chars:
-        # Regex to remove non-printable control chars, preserving whitespace
-        # [^\x20-\x7E] covers basic ASCII non-printable, but we want wider Unicode C category
-        # Since Unicode 'C' is hard in regex, we keep the apply logic or use a specific regex
-        working_s = working_s.apply(lambda x: "".join(ch for ch in x if ch in "\n\r\t" or unicodedata.category(ch)[0] != "C") if isinstance(x, str) else x)
+        str_part = str_part.str.replace(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]', '', regex=True)
 
     if config.remove_special_chars:
-        working_s = working_s.str.replace(r'[^\w\s\n\r\t]', '', regex=True)
+        str_part = str_part.str.replace(r'[^\w\s\n\r\t]', '', regex=True)
         
-    # 5. Trim
+    # Trim
     if config.trim:
-        working_s = working_s.str.strip()
+        str_part = str_part.str.strip()
         
-    return working_s
+    # Put back into series (preserve NaNs)
+    return str_part.where(working_s.notna(), np.nan if config.handle_na else working_s)
 
 def clean_headers(df: pd.DataFrame, config: Optional[CleaningConfig] = None) -> pd.DataFrame:
-    """
-    Robustly cleans DataFrame headers.
-    """
-    if config is None:
-        config = CleaningConfig()
-        
+    """Robustly cleans DataFrame headers to DB-safe identifiers."""
+    if config is None: config = CleaningConfig()
     new_cols = []
     for col in df.columns:
         c = clean_string(str(col), config)
-        if config.lowercase_headers:
-            c = c.lower()
-        # Ensure header is valid for most DBs (no spaces, alphanumeric)
+        if config.lowercase_headers: c = c.lower()
         c = re.sub(r'[^a-zA-Z0-9_]', '_', c)
         c = re.sub(r'__+', '_', c).strip('_')
-        new_cols.append(c)
+        new_cols.append(c if c else f'col_{len(new_cols)+1}') # fallback for empty headers
         
-    df.columns = new_cols
+    # Handle duplicates
+    seen = {}
+    final_cols = []
+    for c in new_cols:
+        if c in seen:
+            seen[c] += 1
+            final_cols.append(f"{c}_{seen[c]}")
+        else:
+            seen[c] = 0
+            final_cols.append(c)
+            
+    df.columns = final_cols
     return df
 
 def robust_clean(df: pd.DataFrame, config: Optional[CleaningConfig] = None, columns: Optional[List[str]] = None) -> pd.DataFrame:
-    """
-    Perform a robust clean of the entire DataFrame headers and data.
-    """
-    if config is None:
-        config = CleaningConfig()
-        
-    # Clean Headers first
-    df = clean_headers(df, config)
-    
-    # Clean Data
+    """Perform a robust clean of the entire DataFrame headers and data."""
+    if config is None: config = CleaningConfig()
+    df = clean_headers(df.copy(), config)
     target_cols = columns if columns else df.select_dtypes(include=['object', 'string']).columns
-    
     for col in target_cols:
+        # type: ignore
         df[col] = clean_series(df[col], config)
-        
     return df
 
-# Shortcut for standard data engineering cleanliness
 def quick_clean(df: pd.DataFrame) -> pd.DataFrame:
     """Standard robust cleanup: BOM, Trim, Smart Chars, Controls."""
-    config = CleaningConfig(lowercase_headers=False)
-    return robust_clean(df, config)
+    return robust_clean(df, CleaningConfig(lowercase_headers=False))

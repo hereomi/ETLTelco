@@ -1,0 +1,21 @@
+# crud - auto_insert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=sqlite:///:memory:)
+  data: [{'id': 1, 'username': 'alice', 'city': 'Paris'}, {'id': 2, 'username': 'bob', 'city': 'London'}]
+  table: Table('users', MetaData(), Column('id', Integer(), table=<users>, primary_key=True, nullable=False), Column('username', String(length=50), table=<users>), Column('city', String(length=50), table=<users>), schema=None)
+
+# crud - auto_insert (SUCCESS)
+- outputs:
+  2
+------------------------------------------
+# crud - auto_upsert (START)
+- inputs:
+  engine: SQLAlchemyEngine(url=sqlite:///:memory:)
+  data: [{'id': 1, 'username': 'alice', 'city': 'Lyon'}, {'id': 3, 'username': 'charlie', 'city': 'Berlin'}]
+  table: Table('users', MetaData(), Column('id', Integer(), table=<users>, primary_key=True, nullable=False), Column('username', String(length=50), table=<users>), Column('city', String(length=50), table=<users>), schema=None)
+  constrain: ['id']
+
+# crud - auto_upsert (SUCCESS)
+- outputs:
+  {'total': 2, 'success': 2, 'failed': 0, 'chunks': [{'total': 2, 'success': 2, 'failed': 0, 'method': 'bulk'}]}
+------------------------------------------

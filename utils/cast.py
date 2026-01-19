@@ -27,7 +27,9 @@ Enhancements:
 """
 
 from __future__ import annotations
-import logging, math, re
+import logging
+import math
+import re
 from datetime import datetime
 from typing import Any, Iterable, Mapping, Optional, Sequence, Tuple
 

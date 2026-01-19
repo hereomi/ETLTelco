@@ -6,7 +6,10 @@ Combines rule-based patterns, ML-like classification, and statistical validation
 """
 
 from __future__ import annotations
-import json, logging, math, re
+import json
+import logging
+import math
+import re
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass

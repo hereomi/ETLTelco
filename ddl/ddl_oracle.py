@@ -245,7 +245,7 @@ def generate_ddl(df: pd.DataFrame, table_name: str, options: dict[str, Any]) -> 
             "oracle", table_name, schema_name, pk_columns, _san, san_set, options.get("pk_constraint_name")
         )
         constraint_sql.append(pk_sql)
-        base_schema["constraints"].append(pk_meta)
+        base_schema["constraints"]["primary_key"] = pk_meta
 
     sqlalchemy_schema = {c.sanitized_name: _sa_type(c.sql_type) for c in columns}
     return processed_df, create_sql, constraint_sql, base_schema, sqlalchemy_schema

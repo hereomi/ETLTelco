@@ -1,0 +1,570 @@
+# utils.casting - cast_df (START)
+- inputs:
+  obj: DataFrame(shape=(81, 56), columns=['message_id', 'from_id', 'from_is_bot', 'from_first_name', 'from_last_name', 'from_username', 'chat_id', 'chat_title', 'chat_type', 'date', 'text', 'entities', 'update_id', 'message_thread_id', 'reply_to_message_message_id', 'reply_to_message_from_id', 'reply_to_message_from_is_bot', 'reply_to_message_from_first_name', 'reply_to_message_from_last_name', 'reply_to_message_chat_id', 'reply_to_message_chat_title', 'reply_to_message_chat_type', 'reply_to_message_date', 'reply_to_message_text', 'reply_to_message_from_username', 'reply_to_message_entities', 'new_chat_participant_id', 'new_chat_participant_is_bot', 'new_chat_participant_first_name', 'new_chat_participant_last_name', 'new_chat_participant_username', 'new_chat_member_id', 'new_chat_member_is_bot', 'new_chat_member_first_name', 'new_chat_member_last_name', 'new_chat_member_username', 'new_chat_members', 'reply_to_message_message_thread_id', 'photo_file_id', 'photo_file_unique_id', 'photo_file_size', 'photo_width', 'photo_height', 'caption', 'media_local_path', 'media_type', 'reply_to_message_edit_date', 'reply_to_message_photo_file_id', 'reply_to_message_photo_file_unique_id', 'reply_to_message_photo_file_size', 'reply_to_message_photo_width', 'reply_to_message_photo_height', 'reply_to_message_caption', 'quote_text', 'quote_position', 'quote_is_manual'])
+  return_dtype_meta: True
+  kwargs: {'infer_threshold': 1}
+
+# DATAFRAME - cast_df_input
+
+shape=(81, 56)
+
+ message_id    from_id  from_is_bot  from_first_name from_last_name  from_username        chat_id chat_title  chat_type       date                                                                                                                      text                                                                                                                                                                                           entities  update_id  message_thread_id  reply_to_message_message_id  reply_to_message_from_id reply_to_message_from_is_bot reply_to_message_from_first_name reply_to_message_from_last_name  reply_to_message_chat_id reply_to_message_chat_title reply_to_message_chat_type  reply_to_message_date                                                                                                     reply_to_message_text reply_to_message_from_username                                                                                                                                                                          reply_to_message_entities  new_chat_participant_id new_chat_participant_is_bot new_chat_participant_first_name new_chat_participant_last_name new_chat_participant_username  new_chat_member_id new_chat_member_is_bot new_chat_member_first_name new_chat_member_last_name new_chat_member_username new_chat_members  reply_to_message_message_thread_id photo_file_id photo_file_unique_id  photo_file_size  photo_width  photo_height caption media_local_path media_type  reply_to_message_edit_date reply_to_message_photo_file_id reply_to_message_photo_file_unique_id  reply_to_message_photo_file_size  reply_to_message_photo_width  reply_to_message_photo_height reply_to_message_caption quote_text  quote_position quote_is_manual
+     189440 1412674022        False              Abu         Nayeem     Nayeem_NOC -1001210103012   Robi-FHL supergroup 1768607549                                                         Please share  power status of DHDHM73 and DHDHM15\n@TX_Monitoring                                                                                                    [{"offset": 30, "length": 19, "type": "bold"}, {"offset": 50, "length": 14, "type": "mention"}]  637821655                NaN                          NaN                       NaN                          NaN                              NaN                             NaN                       NaN                         NaN                        NaN                    NaN                                                                                                                       NaN                            NaN                                                                                                                                                                                                NaN                      NaN                         NaN                             NaN                            NaN                           NaN                 NaN                    NaN                        NaN                       NaN                      NaN              NaN                                 NaN           NaN                  NaN              NaN          NaN           NaN     NaN              NaN        NaN                         NaN                            NaN                                   NaN                               NaN                           NaN                            NaN                      NaN        NaN             NaN             NaN
+     167184 6385295562        False Hossain Mohammad         Arshad HM_ARSHAD_RIO1 -1001401974508 ROBI-SComm supergroup 1768610084 @TX_Monitoring , E. co Kachpur Avid Bhai, We are getting NGBND53 site is unreachable. Could you please share power status [{"offset": 0, "length": 14, "type": "mention"}, {"offset": 17, "length": 18, "type": "text_mention", "user": {"id": 6999893178, "is_bot": false, "first_name": "Abidur", "last_name": "Rahman"}}]  637821656                NaN                          NaN                       NaN                          NaN                              NaN                             NaN                       NaN                         NaN                        NaN                    NaN                                                                                                                       NaN                            NaN                                                                                                                                                                                                NaN                      NaN                         NaN                             NaN                            NaN                           NaN                 NaN                    NaN                        NaN                       NaN                      NaN              NaN                                 NaN           NaN                  NaN              NaN          NaN           NaN     NaN              NaN        NaN                         NaN                            NaN                                   NaN                               NaN                           NaN                            NaN                      NaN        NaN             NaN             NaN
+     189441 6381103312        False              RAN     Monitoring            NaN -1001210103012   Robi-FHL supergroup 1768610834                           BMKSB57 small cell site down since long time without power alarm. please check and share update                                                                                                                                                                                                NaN  637821657                NaN                          NaN                       NaN                          NaN                              NaN                             NaN                       NaN                         NaN                        NaN                    NaN                                                                                                                       NaN                            NaN                                                                                                                                                                                                NaN                      NaN                         NaN                             NaN                            NaN                           NaN                 NaN                    NaN                        NaN                       NaN                      NaN              NaN                                 NaN           NaN                  NaN              NaN          NaN           NaN     NaN              NaN        NaN                         NaN                            NaN                                   NaN                               NaN                           NaN                            NaN                      NaN        NaN             NaN             NaN
+     189442 1412674022        False              Abu         Nayeem     Nayeem_NOC -1001210103012   Robi-FHL supergroup 1768610847                                                                                                               Taking care                                                                                                                                                                                                NaN  637821658           189441.0                     189441.0              6381103312.0                        False                              RAN                      Monitoring             -1.001210e+12                    Robi-FHL                 supergroup           1768610834.0                           BMKSB57 small cell site down since long time without power alarm. please check and share update                            NaN                                                                                                                                                                                                NaN                      NaN                         NaN                             NaN                            NaN                           NaN                 NaN                    NaN                        NaN                       NaN                      NaN              NaN                                 NaN           NaN                  NaN              NaN          NaN           NaN     NaN              NaN        NaN                         NaN                            NaN                                   NaN                               NaN                           NaN                            NaN                      NaN        NaN             NaN             NaN
+     167185  663170042        False               TX     Monitoring  TX_Monitoring -1001401974508 ROBI-SComm supergroup 1768610955                                                                                                               power issue                                                                                                                                                                                                NaN  637821659           167184.0                     167184.0              6385295562.0                        False                 Hossain Mohammad                          Arshad             -1.001402e+12                  ROBI-SComm                 supergroup           1768610084.0 @TX_Monitoring , E. co Kachpur Avid Bhai, We are getting NGBND53 site is unreachable. Could you please share power status                 HM_ARSHAD_RIO1 [{"offset": 0, "length": 14, "type": "mention"}, {"offset": 17, "length": 18, "type": "text_mention", "user": {"id": 6999893178, "is_bot": false, "first_name": "Abidur", "last_name": "Rahman"}}]                      NaN                         NaN                             NaN                            NaN                           NaN                 NaN                    NaN                        NaN                       NaN                      NaN              NaN                                 NaN           NaN                  NaN              NaN          NaN           NaN     NaN              NaN        NaN                         NaN                            NaN                                   NaN                               NaN                           NaN                            NaN                      NaN        NaN             NaN             NaN
+... (76 more rows)
+------------------------------------------
+# JSON - semantic_type_from_first_name
+
+{
+  "column": "from_first_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 81
+}
+------------------------------------------
+# JSON - semantic_type_from_last_name
+
+{
+  "column": "from_last_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 60
+}
+------------------------------------------
+# JSON - semantic_type_from_username
+
+{
+  "column": "from_username",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 63
+}
+------------------------------------------
+# JSON - semantic_type_chat_title
+
+{
+  "column": "chat_title",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 81
+}
+------------------------------------------
+# JSON - semantic_type_chat_type
+
+{
+  "column": "chat_type",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 81
+}
+------------------------------------------
+# JSON - semantic_type_text
+
+{
+  "column": "text",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 75
+}
+------------------------------------------
+# JSON - semantic_type_entities
+
+{
+  "column": "entities",
+  "semantic_type": "STRUCTURED_OBJECT",
+  "sample_size": 33
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_from_is_bot
+
+{
+  "column": "reply_to_message_from_is_bot",
+  "semantic_type": "TRUE_OBJECT",
+  "sample_size": 48
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_from_first_name
+
+{
+  "column": "reply_to_message_from_first_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 48
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_from_last_name
+
+{
+  "column": "reply_to_message_from_last_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 37
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_chat_title
+
+{
+  "column": "reply_to_message_chat_title",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 48
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_chat_type
+
+{
+  "column": "reply_to_message_chat_type",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 48
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_text
+
+{
+  "column": "reply_to_message_text",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 47
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_from_username
+
+{
+  "column": "reply_to_message_from_username",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 30
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_entities
+
+{
+  "column": "reply_to_message_entities",
+  "semantic_type": "STRUCTURED_OBJECT",
+  "sample_size": 17
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_participant_is_bot
+
+{
+  "column": "new_chat_participant_is_bot",
+  "semantic_type": "TRUE_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_participant_first_name
+
+{
+  "column": "new_chat_participant_first_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_participant_last_name
+
+{
+  "column": "new_chat_participant_last_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_participant_username
+
+{
+  "column": "new_chat_participant_username",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_member_is_bot
+
+{
+  "column": "new_chat_member_is_bot",
+  "semantic_type": "TRUE_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_member_first_name
+
+{
+  "column": "new_chat_member_first_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_member_last_name
+
+{
+  "column": "new_chat_member_last_name",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_member_username
+
+{
+  "column": "new_chat_member_username",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_new_chat_members
+
+{
+  "column": "new_chat_members",
+  "semantic_type": "STRUCTURED_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_photo_file_id
+
+{
+  "column": "photo_file_id",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 5
+}
+------------------------------------------
+# JSON - semantic_type_photo_file_unique_id
+
+{
+  "column": "photo_file_unique_id",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 5
+}
+------------------------------------------
+# JSON - semantic_type_caption
+
+{
+  "column": "caption",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 3
+}
+------------------------------------------
+# JSON - semantic_type_media_local_path
+
+{
+  "column": "media_local_path",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 5
+}
+------------------------------------------
+# JSON - semantic_type_media_type
+
+{
+  "column": "media_type",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 5
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_photo_file_id
+
+{
+  "column": "reply_to_message_photo_file_id",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_photo_file_unique_id
+
+{
+  "column": "reply_to_message_photo_file_unique_id",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_reply_to_message_caption
+
+{
+  "column": "reply_to_message_caption",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_quote_text
+
+{
+  "column": "quote_text",
+  "semantic_type": "STRING_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - semantic_type_quote_is_manual
+
+{
+  "column": "quote_is_manual",
+  "semantic_type": "TRUE_OBJECT",
+  "sample_size": 1
+}
+------------------------------------------
+# JSON - dtype_transitions
+
+{
+  "message_id": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "from_id": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "from_is_bot": {
+    "input_dtype": "bool",
+    "output_dtype": "bool"
+  },
+  "from_first_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "from_last_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "from_username": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "chat_id": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "chat_title": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "chat_type": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "date": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "text": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "entities": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRUCTURED_OBJECT"
+  },
+  "update_id": {
+    "input_dtype": "int64",
+    "output_dtype": "int64"
+  },
+  "message_thread_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_message_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_from_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_from_is_bot": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "TRUE_OBJECT"
+  },
+  "reply_to_message_from_first_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_from_last_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_chat_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_chat_title": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_chat_type": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_date": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_text": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_from_username": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_entities": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRUCTURED_OBJECT"
+  },
+  "new_chat_participant_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "new_chat_participant_is_bot": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "TRUE_OBJECT"
+  },
+  "new_chat_participant_first_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "new_chat_participant_last_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "new_chat_participant_username": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "new_chat_member_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "new_chat_member_is_bot": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "TRUE_OBJECT"
+  },
+  "new_chat_member_first_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "new_chat_member_last_name": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "new_chat_member_username": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "new_chat_members": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRUCTURED_OBJECT"
+  },
+  "reply_to_message_message_thread_id": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "photo_file_id": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "photo_file_unique_id": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "photo_file_size": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "photo_width": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "photo_height": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "caption": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "media_local_path": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "media_type": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_edit_date": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_photo_file_id": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_photo_file_unique_id": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "reply_to_message_photo_file_size": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_photo_width": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_photo_height": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "reply_to_message_caption": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "quote_text": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "STRING_OBJECT"
+  },
+  "quote_position": {
+    "input_dtype": "float64",
+    "output_dtype": "float64"
+  },
+  "quote_is_manual": {
+    "input_dtype": "object",
+    "output_dtype": "object",
+    "object_semantic_type": "TRUE_OBJECT"
+  }
+}
+------------------------------------------
+# utils.casting - cast_df (SUCCESS)
+- outputs:
+  (    message_id  ...  quote_is_manual
+0       189440  ...              NaN
+1       167184  ...              NaN
+2       189441  ...              NaN
+3       189442  ...              NaN
+4       167185  ...              NaN
+..         ...  ...              ...
+76      189477  ...              NaN
+77      189478  ...              NaN
+78      189479  ...              NaN
+79      189480  ...              NaN
+80      189481  ...             True
+
+[81 rows x 56 columns], {'message_id': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'from_id': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'from_is_bot': {'input_dtype': 'bool', 'output_dtype': 'bool'}, 'from_first_name': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'from_last_name': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'from_username': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'chat_id': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'chat_title': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'chat_type': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'date': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'text': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRING_OBJECT'}, 'entities': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'STRUCTURED_OBJECT'}, 'update_id': {'input_dtype': 'int64', 'output_dtype': 'int64'}, 'message_thread_id': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'reply_to_message_message_id': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'reply_to_message_from_id': {'input_dtype': 'float64', 'output_dtype': 'float64'}, 'reply_to_message_from_is_bot': {'input_dtype': 'object', 'output_dtype': 'object', 'object_semantic_type': 'TRUE_OBJECT'}, 'reply_to_message_fro...
+------------------------------------------

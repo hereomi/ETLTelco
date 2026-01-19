@@ -17,7 +17,19 @@ from __future__ import annotations
 import re
 from typing import Any, Dict, List, Tuple, Union, Optional
 import pandas as pd
-from .sanitization import escape_identifier
+
+try:
+    from .sanitization import escape_identifier
+except ImportError:
+    # Stub replacement if sanitization is not migrated yet
+    # Assuming crud library should be self-contained, we might need to migrate sanitization too or duplicate
+    def escape_identifier(identifier: str, dialect: str) -> str:
+        identifier = str(identifier)
+        if dialect in ('mysql', 'mariadb'):
+            return f"`{identifier}`"
+        elif dialect in ('postgres', 'postgresql', 'oracle', 'sqlite', 'mssql'):
+            return f'"{identifier}"'
+        return identifier
 
 # Logging Configuration
 DEBUG_LOG_ENABLED = True
@@ -39,7 +51,7 @@ def _log(func_name: str, msg: Any):
 _WD = r"[A-Za-z_][\w$]*"
 _OP = r"BETWEEN|IN|LIKE|<=|>=|!=|=|>|<"
 _rx_plain = re.compile(rf"^(?P<field>{_WD})\s*(?P<operator>{_OP})\s*(?P<values>.+)$", re.I)
-_rx_where = re.compile(rf"^(?P<field>{_WD})\s*(?P<operator>{_OP})\s*(?P<val>.+)$", re.I)
+_rx_where = re.compile(rf"^(?P<field>{_WD})\s*(?P<op>{_OP})\s*(?P<val>.+)$", re.I)
 
 
 def _escape_like(val: str, dialect: str) -> Tuple[str, str]:
@@ -218,6 +230,9 @@ def _ensure_df(data) -> pd.DataFrame:
 
 
 def _align_column_name(field: str, df_cols: set[str]) -> Tuple[str, bool]:
+    """
+    Align a field name to match DataFrame columns (case-insensitive).
+    """
     # Create case-insensitive mapping
     df_cols_map = {c.upper(): c for c in df_cols}
     
@@ -229,13 +244,16 @@ def _align_column_name(field: str, df_cols: set[str]) -> Tuple[str, bool]:
 
 
 def _parse_where_item(item: Any, df_cols: set[str], allow_missing: bool = False) -> Optional[Dict[str, Any]]:
+    """
+    Parse and align a WHERE clause item.
+    """
     if isinstance(item, tuple):
         field, op, raw_val = item
     else:
         m = _rx_where.match(str(item).strip())
         if not m:
             raise ValueError(f"Invalid where clause: {item}")
-        field, op, raw_val = m.group('field'), m.group('operator'), m.group('val')
+        field, op, raw_val = m.group('field'), m.group('op'), m.group('val')
 
     # Align column name to DataFrame
     aligned_field, found = _align_column_name(field, df_cols)
@@ -275,14 +293,6 @@ def _parse_where_item(item: Any, df_cols: set[str], allow_missing: bool = False)
 def _row_conditions(row: pd.Series, where: List[Any], allow_missing: bool = False) -> List[Dict[str, Any]]:
     """
     Build conditions for a row, replacing placeholders with actual values.
-    
-    Args:
-        row: DataFrame row (Series)
-        where: List of WHERE clause items
-        allow_missing: If True, allow columns not in DataFrame
-    
-    Returns:
-        List of condition dictionaries
     """
     conds = []
     df_cols = set(row.index)
@@ -340,18 +350,6 @@ def _update_stmt(
 ) -> Tuple[str, Dict[str, Any]]:
     """
     Build UPDATE statement with WHERE clause.
-    
-    Args:
-        row: DataFrame row with values to update
-        table: Table name
-        where: WHERE clause conditions
-        expr: Expression to combine WHERE conditions
-        dialect: Database dialect
-        update_cols: Columns to update (if None, use all row columns)
-        allow_missing_where_cols: If True, allow WHERE columns not in row (for PKs)
-    
-    Returns:
-        Tuple of (SQL string, parameters dict)
     """
     # Build WHERE clause (allow missing columns for PK-based updates)
     sql_w, param_w = sql_where(
@@ -418,12 +416,6 @@ def build_update(
     
     Returns:
         Tuple of (SQL string, parameters dict)
-    
-    Example:
-        >>> df = pd.DataFrame([{'cost_code': 'NEW_VALUE'}])
-        >>> sql, params = build_update(
-        ...     df, 'test_quota', [('COST_ID', '=', 1001)], 'sqlite'
-        ... )
     """
     df = _ensure_df(data)
     if len(df) != 1:
@@ -464,48 +456,3 @@ def build_insert(data: Any, table: str, dialect: str = 'sqlite') -> Tuple[str, D
         raise ValueError(f"Expected 1 row, got {len(df)}")
     
     return _insert_stmt(df.iloc[0], table, dialect)
-
-
-# ═══════════════════════════════════════════════════════════════════════════
-# Testing and Validation
-# ═══════════════════════════════════════════════════════════════════════════
-
-if __name__ == "__main__":
-    # Test 1: Basic WHERE clause
-    print("Test 1: Basic WHERE clause")
-    conds = [
-        "cell_id = '00123'",
-        ("vendor", "IN", ["GP", "BL"]),
-        {"field": "tech", "operator": "LIKE", "value": "2G"},
-        "dt BETWEEN '2023-01-01' and '2023-01-31'"
-    ]
-    sql, binds = sql_where(conds, "1 AND (2 OR 3) AND 4", dialect="oracle")
-    print(f"SQL: {sql}")
-    print(f"Params: {binds}\n")
-    
-    # Test 2: Column name alignment
-    print("Test 2: Column name alignment (case mismatch)")
-    df = pd.DataFrame([{"cost_code": "NEW_VALUE"}])  # lowercase
-    sql, params = build_update(
-        df,
-        "test_quota",
-        [("COST_ID", "=", 1001)],  # uppercase WHERE column
-        dialect="sqlite",
-        allow_missing_where_cols=True
-    )
-    print(f"SQL: {sql}")
-    print(f"Params: {params}\n")
-    
-    # Test 3: Error handling - missing column
-    print("Test 3: Error handling - missing column without allow_missing")
-    try:
-        df = pd.DataFrame([{"cost_code": "NEW_VALUE"}])
-        sql, params = build_update(
-            df,
-            "test_quota",
-            [("COST_ID", "=", 1001)],
-            dialect="sqlite",
-            allow_missing_where_cols=False  # Should raise error
-        )
-    except ValueError as e:
-        print(f"Expected error: {e}\n")
