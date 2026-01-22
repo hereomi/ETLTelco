@@ -1,0 +1,21 @@
+2026-01-21 01:38:47,323 - ETLDemo - INFO - Starting ETL Demo
+2026-01-21 01:38:47,324 - ETLDemo - INFO - Creating demo DataFrame...
+2026-01-21 01:38:47,324 - ETLDemo - INFO - Creating demo DataFrame...
+2026-01-21 01:38:47,331 - ETLDemo - ERROR - ETL Demo failed with error: unsupported type for timedelta days component: numpy.int32
+2026-01-21 01:44:01,334 - ETLDemo - INFO - Starting ETL Demo
+2026-01-21 01:44:01,335 - ETLDemo - INFO - Creating demo DataFrame...
+2026-01-21 01:44:01,335 - ETLDemo - INFO - Creating demo DataFrame...
+2026-01-21 01:44:01,351 - ETLDemo - INFO - Demo DataFrame created with shape: (100, 9)
+2026-01-21 01:44:01,353 - ETLDemo - INFO - Demo DataFrame created with shape: (100, 9)
+2026-01-21 01:44:01,354 - ETLDemo - INFO - DataFrame head:
+2026-01-21 01:44:01,364 - ETLDemo - INFO - Row 0: {'id': 1, 'name': 'Person_1', 'email': 'user1@example.com', 'age': 56, 'salary': 77418.02832021774, 'is_active': True, 'created_date': Timestamp('2025-10-10 01:44:01.336015'), 'profile': '{"bio": "Sample bio 1", "preferences": {"theme": "dark", "lang": "en"}}', 'metadata': b'metadata_1'}
+2026-01-21 01:44:01,367 - ETLDemo - INFO - Row 1: {'id': 2, 'name': 'Person_2', 'email': 'user2@example.com', 'age': 69, 'salary': 141199.0638952553, 'is_active': False, 'created_date': Timestamp('2025-02-16 01:44:01.336015'), 'profile': '{"bio": "Sample bio 2", "preferences": {"theme": "dark", "lang": "en"}}', 'metadata': b'metadata_2'}
+2026-01-21 01:44:01,368 - ETLDemo - INFO - Row 2: {'id': 3, 'name': 'Person_3', 'email': 'user3@example.com', 'age': 46, 'salary': 117272.6395027705, 'is_active': False, 'created_date': Timestamp('2025-05-13 01:44:01.336015'), 'profile': '{"bio": "Sample bio 3", "preferences": {"theme": "dark", "lang": "en"}}', 'metadata': b'metadata_3'}
+2026-01-21 01:44:01,370 - ETLDemo - INFO - Row 3: {'id': 4, 'name': 'Person_4', 'email': 'user4@example.com', 'age': 32, 'salary': 69184.89225670024, 'is_active': False, 'created_date': Timestamp('2025-06-09 01:44:01.336015'), 'profile': '{"bio": "Sample bio 4", "preferences": {"theme": "dark", "lang": "en"}}', 'metadata': b'metadata_4'}
+2026-01-21 01:44:01,372 - ETLDemo - INFO - Row 4: {'id': 5, 'name': 'Person_5', 'email': 'user5@example.com', 'age': 60, 'salary': 98453.27692864793, 'is_active': False, 'created_date': Timestamp('2025-10-02 01:44:01.336015'), 'profile': '{"bio": "Sample bio 5", "preferences": {"theme": "dark", "lang": "en"}}', 'metadata': b'metadata_5'}
+2026-01-21 01:44:01,373 - ETLDemo - INFO - DataFrame info:
+2026-01-21 01:44:01,374 - ETLDemo - INFO - Columns: ['id', 'name', 'email', 'age', 'salary', 'is_active', 'created_date', 'profile', 'metadata']
+2026-01-21 01:44:01,376 - ETLDemo - INFO - Data types: {'id': dtype('int64'), 'name': dtype('O'), 'email': dtype('O'), 'age': dtype('int32'), 'salary': dtype('float64'), 'is_active': dtype('bool'), 'created_date': dtype('<M8[ns]'), 'profile': dtype('O'), 'metadata': dtype('O')}
+2026-01-21 01:44:01,377 - ETLDemo - INFO - Initializing database manager...
+2026-01-21 01:44:01,377 - ETLDemo - INFO - Creating table 'demo_users' in all databases using the unified runner...
+2026-01-21 01:44:10,531 - ETLDemo - INFO - ETL Demo completed successfully!

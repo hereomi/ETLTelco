@@ -18,18 +18,19 @@ import re
 from typing import Any, Dict, List, Tuple, Union, Optional
 import pandas as pd
 
+
 try:
     from .sanitization import escape_identifier
 except ImportError:
-    # Stub replacement if sanitization is not migrated yet
-    # Assuming crud library should be self-contained, we might need to migrate sanitization too or duplicate
-    def escape_identifier(identifier: str, dialect: str) -> str:
-        identifier = str(identifier)
+    # Stub replacement if sanitization is not available
+    def escape_identifier(name: str, dialect: str) -> str:
+        name = str(name)
         if dialect in ('mysql', 'mariadb'):
-            return f"`{identifier}`"
+            return f"`{name}`"
         elif dialect in ('postgres', 'postgresql', 'oracle', 'sqlite', 'mssql'):
-            return f'"{identifier}"'
-        return identifier
+            return f'"{name}"'
+        return name
+
 
 # Logging Configuration
 DEBUG_LOG_ENABLED = True

@@ -15,6 +15,27 @@ class DiagnosticsCollector:
         self.validation_results: List[ValidationResult] = []
         self.warnings: List[str] = []
         self.errors: List[str] = []
+        self.metadata: Dict[str, Any] = {}  # Issue 2/3/4: store surfaced validation metadata
+    
+    def add_metadata(self, key: str, value: Any):
+        """Attach observable metadata for downstream callers."""
+        existing = self.metadata.get(key)
+        if isinstance(existing, dict) and isinstance(value, dict):
+            merged = existing.copy()
+            merged.update(value)
+            self.metadata[key] = merged
+        elif isinstance(existing, list) and isinstance(value, list):
+            self.metadata[key] = existing + value
+        elif existing is not None and isinstance(existing, list):
+            self.metadata[key] = existing + [value]
+        elif existing is not None and not isinstance(existing, list):
+            self.metadata[key] = [existing, value]
+        else:
+            self.metadata[key] = value
+    
+    def get_metadata(self) -> Dict[str, Any]:
+        """Retrieve collected metadata."""
+        return self.metadata
     
     def record_validation_result(self, column: str, total_rows: int, failed_rows: int, error_type: str, original_series=None, failure_mask=None, action_taken: str = "coerced_to_null", outliers_detected: int = 0, outlier_method: str = "none"):
         """Record detailed validation result for a column."""

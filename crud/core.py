@@ -68,52 +68,59 @@ def _validate_constrain_unique(conn: Connection, table: sa.Table, constrain: Lis
     )
 
 
+def _collect_not_null_violations(rows: List[Dict[str, Any]], table: sa.Table) -> List[Dict[str, Any]]:
+    issues: List[Dict[str, Any]] = []
+    for idx, r in enumerate(rows):
+        for c in table.columns:
+            if not c.nullable and c.default is None and c.server_default is None:
+                if r.get(c.name) is None:
+                    issues.append({"row": idx, "column": c.name})
+    return issues
+
+
 def _execute_with_row_isolation(
     conn: Connection,
     rows: List[Dict[str, Any]],
     bulk_exec: Callable[[List[Dict[str, Any]]], None],
     row_exec: Callable[[Dict[str, Any]], None],
     tolerance: int,
+    strict: bool,
 ) -> Dict[str, Any]:
-    """
-    Execute in two phases: try bulk; if fails, retry row-by-row with attribution.
-    Returns execution statistics.
-    """
     if not rows:
-        return {"total": 0, "success": 0, "failed": 0, "method": "none"}
-    
+        return {"total": 0, "success": 0, "failed": 0, "method": "none", "diagnostics": {"mode": "strict" if strict else "non_strict", "fallback_used": False, "row_errors": []}}
+    diagnostics: Dict[str, Any] = {"mode": "strict" if strict else "non_strict", "fallback_used": False, "row_errors": []}
     try:
         bulk_exec(rows)
-        return {"total": len(rows), "success": len(rows), "failed": 0, "method": "bulk"}
+        return {"total": len(rows), "success": len(rows), "failed": 0, "method": "bulk", "diagnostics": diagnostics}
     except Exception as bulk_err:
-        # Fallback to lazy
+        diagnostics["fallback_used"] = True
+        diagnostics["bulk_error"] = f"{type(bulk_err).__name__}: {bulk_err}"
         success_count = 0
         bad_rows: List[Tuple[int, Dict[str, Any], Exception]] = []
         failures_in_row = 0
         idx = -1
-        
         for idx, r in enumerate(rows):
             try:
                 row_exec(r)
                 success_count += 1
             except Exception as row_err:
                 bad_rows.append((idx, r, row_err))
+                diagnostics["row_errors"].append({"row_index": idx, "error": f"{type(row_err).__name__}: {row_err}"})
                 failures_in_row += 1
                 if failures_in_row >= tolerance:
                     break
-        
         stats = {
             "total": len(rows),
             "success": success_count,
             "failed": len(bad_rows),
             "method": "lazy_fallback",
-            "bulk_error": str(bulk_err)
+            "bulk_error": str(bulk_err),
+            "diagnostics": diagnostics,
         }
-        
         if failures_in_row >= tolerance:
             stats["aborted"] = True
             stats["unprocessed"] = len(rows) - (idx + 1)
-        
+            diagnostics["aborted"] = True
         if bad_rows:
             messages = []
             for idx_inner, r, err in bad_rows:
@@ -126,13 +133,10 @@ def _execute_with_row_isolation(
                 f"Stats: {success_count}/{len(rows)} succeeded\n"
             )
             if failures_in_row >= tolerance:
-                 error_msg += f"\n[!] Processing aborted after {tolerance} failures. {len(rows) - idx - 1} rows not attempted."
-
+                error_msg += f"\n[!] Processing aborted after {tolerance} failures. {len(rows) - idx - 1} rows not attempted."
             error_msg += "Failing rows (first subset):\n" + "\n".join(messages)
-            if success_count == 0:  # Total failure
+            if strict or success_count == 0:
                 raise RuntimeError(error_msg) from bulk_err
-            # Partial success - log warning
             import logging
             logging.getLogger(__name__).warning(error_msg)
-        
         return stats

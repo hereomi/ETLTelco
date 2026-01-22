@@ -195,6 +195,7 @@ class DataAligner:
                 execute_sql(alter_stmt)
             except Exception as e:
                 self.diagnostics.add_error(f"Failed to add column '{col}': {e}")
+                raise ValueError(f"Schema evolution failed for column '{col}'")  # Issue 1: prevent silent schema add failures
     
     def _map_columns(self, df: pd.DataFrame, meta: Dict[str, ColumnInfo], col_map: Optional[Dict[str, str]]) -> pd.DataFrame:
         """Map DataFrame columns to database columns with case-insensitive matching."""
@@ -401,6 +402,7 @@ class DataAligner:
             if nulls.any():
                 null_count = int(nulls.sum())
                 total_count = len(df)
+                self.diagnostics.add_metadata("not_null_violations", {col_name: {"nulls": null_count, "total": total_count}})  # Issue 3: surface NOT NULL failures
                 if self.config.validation_mode == ValidationMode.STRICT:
                     raise ValueError(f"NOT NULL constraint violation: {col_name} has {null_count} null values")
                 else:
@@ -408,6 +410,7 @@ class DataAligner:
     
     def _validate_constraints(self, conn: Connection | Engine, df: pd.DataFrame, meta: Dict[str, ColumnInfo], constraints: ConstraintInfo, validate_fk: bool):
         """Validate primary key, unique, and foreign key constraints."""
+        violations: List[Dict[str, Any]] = []
         pk = constraints.primary_key
         if pk:
             pk_cols = pk.get('constrained_columns', [])
@@ -415,19 +418,31 @@ class DataAligner:
             if pk_cols_present and len(pk_cols_present) == len(pk_cols):
                 if df.duplicated(subset=pk_cols_present).any():
                     dupes = df[df.duplicated(subset=pk_cols_present, keep=False)]
-                    self.diagnostics.add_error(f"Primary Key violation: Duplicates found in {pk_cols_present}. count={len(dupes)}")
+                    msg = f"Primary Key violation: Duplicates found in {pk_cols_present}. count={len(dupes)}"
+                    self.diagnostics.add_error(msg)
+                    violations.append({"type": "primary_key", "columns": pk_cols_present, "count": len(dupes), "message": msg})
         for u in constraints.unique_constraints:
             u_cols = u.get('column_names', [])
             u_cols_present = [c for c in u_cols if c in df.columns]
             if u_cols_present and len(u_cols_present) == len(u_cols):
                 if df.duplicated(subset=u_cols_present).any():
-                    self.diagnostics.add_error(f"Unique constraint violation: Duplicates in {u_cols_present}.")
+                    msg = f"Unique constraint violation: Duplicates in {u_cols_present}."
+                    self.diagnostics.add_error(msg)
+                    violations.append({"type": "unique", "columns": u_cols_present, "message": msg})
+        if violations:
+            if self.config.validation_mode == ValidationMode.STRICT:
+                raise ValueError("Constraint violations detected")  # Issue 2: hard fail in strict mode
+            self.diagnostics.add_metadata("constraint_violations", violations)  # Issue 2: expose violations in non-strict mode
         if validate_fk:
             pass
     
     def get_diagnostics(self) -> DiagnosticsCollector:
         """Get diagnostics collector for detailed validation results."""
         return self.diagnostics
+    
+    def get_validation_metadata(self) -> Dict[str, Any]:
+        """Expose validation metadata for downstream callers."""  # Issue 2/3/4: surface observability
+        return self.diagnostics.get_metadata()
     
     def get_performance_metrics(self):
         """Get performance metrics for the last alignment operation."""

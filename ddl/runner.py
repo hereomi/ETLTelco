@@ -9,7 +9,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.exc import SQLAlchemyError
 
-from ddl.create_ddl import df_ddl
+from .create_ddl import df_ddl
 # Ideally we would reuse logging, but for now we'll stick to print/basic logging to avoid circular deps or complexity
 # If logging is needed, we can import it.
 
@@ -27,6 +27,7 @@ def run_ddl_and_load(
     include_not_null: bool = False,
     object_sample_size: int = 5000,
     json_text_threshold: float = 0.85,
+    use_ddl_io: bool = False, # New option to use the user's ddl_io utility
 ) -> Dict[str, Any]:
     """
     Generate DDL, execute it, and load data for multiple database connections.
@@ -52,44 +53,68 @@ def run_ddl_and_load(
         dialect_name = engine.dialect.name.lower()
         print(f"\n--- Processing Database: {dialect_name.upper()} (Key: {server_key}) ---")
 
-        # Call the modular DDL generator
-        # Note: df_ddl signature: 
-        # (engine, df, table_name, pk=None, fk=None, **options) -> (processed_df, create_sql, constraint_sql, schema, sa_schema)
+        # Initialize variables to avoid unbound errors
+        processed_df, create_sql, constraint_sql, meta_schema = None, None, [], {}
         
-        try:
-            processed_df, create_sql, constraint_sql, meta_schema, sa_schema = df_ddl(
-                engine,
-                df,
-                table,
-                pk=pk,
-                fk=fk,
-                schema=schema_name,
-                include_not_null=include_not_null,
-                object_sample_size=object_sample_size,
-                json_text_threshold=json_text_threshold
-            )
-        except Exception as e:
-            msg = f"DDL Generation failed: {e}"
-            print(f"❌ FAIL ({msg})")
-            results["servers"][server_key] = {"status": "DDL_GEN_FAILED", "message": msg}
-            continue
+        if use_ddl_io:
+            try:
+                from .ddl_io import ddl_via_pandas_internals
+                print(f"  ➡️ Using ddl_io utility for {dialect_name}...")
+                create_sql, processed_df, ddl_path, ddl_error = ddl_via_pandas_internals(df, table, dialect_name)
+                constraint_sql = []
+                meta_schema = {"method": f"ddl_io.{ddl_path}"}
+                if ddl_error:
+                    meta_schema["primary_error"] = ddl_error
+            except Exception as e:
+                msg = f"ddl_io Generation failed: {e}. Falling back to standard."
+                print(f"⚠️ {msg}")
+                use_ddl_io = False
+
+        if not use_ddl_io:
+            try:
+                processed_df, create_sql, constraint_sql, meta_schema, sa_schema = df_ddl(
+                    engine,
+                    df,
+                    table,
+                    pk=pk,
+                    fk=fk,
+                    schema=schema_name,
+                    include_not_null=include_not_null,
+                    object_sample_size=object_sample_size,
+                    json_text_threshold=json_text_threshold
+                )
+            except Exception as e:
+                msg = f"DDL Generation failed: {e}"
+                print(f"❌ FAIL ({msg})")
+                results["servers"][server_key] = {"status": "DDL_GEN_FAILED", "message": msg}
+                continue
 
         server_status: Dict[str, Any] = {"ddl_success": False, "data_load_success": False}
         
         # Execute DDL
         try:
-            print("  ➡️ Attempting Table Creation (DDL)...", end=' ')
+            if create_sql is None:
+                raise ValueError("No DDL generated for table")
+                
+            print(f"  ➡️ Attempting Table Creation (DDL) for {table}...", end=' ')
             with engine.begin() as conn:
-                # Some dialects might return multiple statements in create_sql if we didn't split them.
-                # In the modular design, create_sql is usually one statement, and constraints are a list.
-                conn.execute(text(create_sql))
+                # Split multi-statement DDL for drivers that don't support it (e.g. cx_Oracle)
+                # and wrap in text() for SQLAlchemy 2.0 compatibility
+                for stmt in create_sql.split(';'):
+                    if stmt.strip():
+                        conn.execute(text(stmt))
                 for c_stmt in constraint_sql:
-                    conn.execute(text(c_stmt))
+                    for sub_stmt in c_stmt.split(';'):
+                        if sub_stmt.strip():
+                            conn.execute(text(sub_stmt))
             
             server_status["ddl_success"] = True
             print("✅ SUCCESS")
             
             # Load Data
+            if processed_df is None:
+                raise ValueError("No processed data available to load")
+
             print("  ➡️ Attempting Data Load...", end=' ')
             processed_df.to_sql(
                 table,
@@ -97,7 +122,8 @@ def run_ddl_and_load(
                 schema=schema_name if dialect_name != 'sqlite' else None,
                 if_exists='append',
                 index=False,
-                method='multi' # chunksize can be added if needed
+                chunksize=1000, # Added chunksize to prevent parameter limit errors
+                method='multi'
             )
             server_status["data_load_success"] = True
             print("✅ SUCCESS")

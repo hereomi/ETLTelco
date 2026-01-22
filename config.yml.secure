@@ -1,0 +1,31 @@
+# SECURE Configuration File
+# This file now uses environment variables for sensitive data
+# See .env.template for required environment variables
+
+logging:
+  enabled: ${LOGGING_ENABLED:true}
+  dir: ${LOGGING_DIR:log}
+  max_repr_len: ${LOGGING_MAX_REPR_LEN:2000}
+  bucket_minutes: ${LOGGING_BUCKET_MINUTES:10}
+
+schema:
+  enabled: ${SCHEMA_ENABLED:true}
+  dir: ${SCHEMA_DIR:schema}
+
+csv:
+  dir: ${CSV_DIR:csv}
+
+server:
+  mysql: ${DB_MYSQL_URI}
+  mssql: ${DB_MSSQL_URI}
+  postgre: ${DB_POSTGRE_URI}
+  oracle: ${DB_ORACLE_URI}
+  sqlite: ${DB_SQLITE_URI:sqlite:///opflow.db}
+
+active_server: ${ACTIVE_SERVER:oracle}
+
+telegram:
+  token: ${TELEGRAM_BOT_TOKEN}
+  media_dir: ${TELEGRAM_MEDIA_DIR:telegram_media}
+  polling_interval: ${TELEGRAM_POLLING_INTERVAL:5}
+  table_name: ${TELEGRAM_TABLE_NAME:TRANSPORT_TELEGRAM}

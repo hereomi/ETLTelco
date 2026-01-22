@@ -63,7 +63,9 @@ class TypeValidator:
                 mask_range_error = (s_num < -9223372036854775808) | (s_num > 9223372036854775807)
         total_failures = mask_invalid_str | mask_float_loss | mask_range_error
         if total_failures.any():
-            self._handle_validation_failures(total_failures, info.name, "strict integer check", s_num)
+            allow = self._handle_validation_failures(total_failures, info.name, "strict integer check", s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
             s_num[total_failures] = np.nan
         return s_num.astype('Int64')
     
@@ -72,7 +74,9 @@ class TypeValidator:
         s_num = pd.to_numeric(s, errors='coerce')
         mask_fail = s.notna() & s_num.isna()
         if mask_fail.any():
-            self._handle_validation_failures(mask_fail, info.name, "numeric conversion", s_num)
+            allow = self._handle_validation_failures(mask_fail, info.name, "numeric conversion", s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
         return s_num.astype('Float64')
     
     def _strict_string(self, s: pd.Series, info: Any) -> pd.Series:
@@ -89,7 +93,9 @@ class TypeValidator:
         total_violations = length_violations | encoding_violations
         if total_violations.any():
             error_msg = f"string validation (max_len={getattr(info, 'length', 'unlimited')})"
-            self._handle_validation_failures(total_violations, info.name, error_msg, s_str)
+            allow = self._handle_validation_failures(total_violations, info.name, error_msg, s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
             s_str.loc[total_violations] = None
         return s_str
     
@@ -102,7 +108,9 @@ class TypeValidator:
         mask_false = s_norm.isin(self.DEFAULT_FALSE)
         mask_fail = s.notna() & (~mask_true) & (~mask_false)
         if mask_fail.any():
-            self._handle_validation_failures(mask_fail, info.name, "boolean constraint", s)
+            allow = self._handle_validation_failures(mask_fail, info.name, "boolean constraint", s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
         out = pd.Series(index=s.index, dtype='object')
         out[mask_true] = True
         out[mask_false] = False
@@ -127,7 +135,9 @@ class TypeValidator:
                 s_dt.loc[mask_try] = pd.to_datetime(parsed, errors='coerce')
         mask_fail = s.notna() & s_dt.isna()
         if mask_fail.any():
-            self._handle_validation_failures(mask_fail, info.name, "datetime parsing", s)
+            allow = self._handle_validation_failures(mask_fail, info.name, "datetime parsing", s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
         return s_dt
     
     def _strict_json(self, s: pd.Series, info: Any) -> pd.Series:
@@ -147,7 +157,9 @@ class TypeValidator:
         res = s.apply(validate_json)
         mask_fail = s.notna() & res.isna()
         if mask_fail.any():
-            self._handle_validation_failures(mask_fail, info.name, "valid JSON", s)
+            allow = self._handle_validation_failures(mask_fail, info.name, "valid JSON", s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
         return res
     
     def _strict_binary(self, s: pd.Series, info: Any) -> pd.Series:
@@ -155,16 +167,18 @@ class TypeValidator:
         is_binary = s.map(lambda x: pd.isna(x) or isinstance(x, (bytes, bytearray, memoryview)))
         mask_fail = ~is_binary
         if mask_fail.any():
-            self._handle_validation_failures(mask_fail, info.name, "binary content (bytes)", s)
+            allow = self._handle_validation_failures(mask_fail, info.name, "binary content (bytes)", s)
+            if not allow:
+                return s  # Issue 4: keep original values on high failure rate
         out = s.copy()
         out[mask_fail] = None
         return out
     
-    def _handle_validation_failures(self, failure_mask: pd.Series, col_name: str, error_type: str, original_series: pd.Series):
+    def _handle_validation_failures(self, failure_mask: pd.Series, col_name: str, error_type: str, original_series: pd.Series) -> bool:
         """Handle validation failures with outlier detection and diagnostics."""
         fail_count = int(failure_mask.sum())
         if fail_count == 0:
-            return
+            return True
         total = len(failure_mask)
         rate = fail_count / total
         outliers_detected = 0
@@ -182,12 +196,16 @@ class TypeValidator:
                     rate = sys_rate
                     fail_count = sys_count
         action_taken = "coerced_to_null"
+        allow_coercion = True
         if rate > self.config.failure_threshold:
             if self.config.validation_mode.value == "strict":
                 action_taken = "raised_error"
                 raise ValueError(f"[{col_name}] Critical: {fail_count}/{total} ({rate:.1%}) rows failed {error_type}. Exceeds threshold {self.config.failure_threshold:.1%}")
             else:
-                self.diagnostics.add_warning(f"[{col_name}] {fail_count}/{total} ({rate:.1%}) failures exceed threshold but coercing to NULL")
+                allow_coercion = False
+                action_taken = "returned_original"
+                self.diagnostics.add_warning(f"[{col_name}] {fail_count}/{total} ({rate:.1%}) failures exceed threshold; returning original values")
+                self.diagnostics.add_metadata("validation_failures", {col_name: {"failed": fail_count, "total": total, "error": error_type}})  # Issue 4: expose high-failure columns without nulling
         self.diagnostics.record_validation_result(
             column=col_name,
             total_rows=total,
@@ -199,6 +217,7 @@ class TypeValidator:
             outliers_detected=outliers_detected,
             outlier_method=outlier_method
         )
+        return allow_coercion
     
     def _detect_outliers_multi_algorithm(self, series: pd.Series) -> tuple[pd.Series, str]:
         """Try multiple outlier detection algorithms and return the best result."""

@@ -98,7 +98,7 @@ def generate_sqlalchemy_model(
             attrs.append("autoincrement=True")
         
         # If it's a PK, it's implicitly not null. Otherwise check data.
-        if (col in pk_cols) or (not work_df[col].isna().any()):
+        if (col in pk_cols) or (not bool(work_df[col].isna().any())):
             attrs.append("nullable=False")
 
 

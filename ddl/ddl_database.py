@@ -3,7 +3,7 @@ from __future__ import annotations
 import pandas as pd
 from typing import Dict, Any, Optional
 from sqlalchemy import create_engine
-from ddl_common import validate_dataframe, validate_table_name
+from .ddl_common import validate_dataframe, validate_table_name
 
 
 class DatabaseManager:
@@ -21,9 +21,11 @@ class DatabaseManager:
         return self.engines[dialect]
     
     def execute_ddl(self, sql: str, dialect: str) -> None:
+        from sqlalchemy import text
         engine = self.get_engine(dialect)
         with engine.connect() as conn:
-            conn.execute(sql)
+            # Wrap raw SQL in text() for SQLAlchemy 2.0 compatibility
+            conn.execute(text(sql))
             conn.commit()
     
     def insert_data(

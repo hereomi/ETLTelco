@@ -1,0 +1,115 @@
+{
+  "dialect": "sqlite",
+  "table": {
+    "name": "demo_users",
+    "schema": "",
+    "fully_qualified_name": "demo_users"
+  },
+  "columns": [
+    {
+      "original_name": "id",
+      "sanitized_name": "id",
+      "pandas_dtype": "int64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "name",
+      "sanitized_name": "name",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "email",
+      "sanitized_name": "email",
+      "pandas_dtype": "object",
+      "semantic_object_type": "STRING_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "age",
+      "sanitized_name": "age",
+      "pandas_dtype": "int32",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "salary",
+      "sanitized_name": "salary",
+      "pandas_dtype": "float64",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "real",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "is_active",
+      "sanitized_name": "is_active",
+      "pandas_dtype": "bool",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "integer",
+      "nullable": false,
+      "warnings": []
+    },
+    {
+      "original_name": "created_date",
+      "sanitized_name": "created_date",
+      "pandas_dtype": "datetime64[ns]",
+      "semantic_object_type": "UNKNOWN_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": [
+        "Datetime mapped to TEXT (ISO) unless adapter supports datetime"
+      ]
+    },
+    {
+      "original_name": "profile",
+      "sanitized_name": "profile",
+      "pandas_dtype": "object",
+      "semantic_object_type": "JSON_OBJECT",
+      "sql_type": "text",
+      "nullable": false,
+      "warnings": [
+        "JSON stored as TEXT"
+      ]
+    },
+    {
+      "original_name": "metadata",
+      "sanitized_name": "metadata",
+      "pandas_dtype": "object",
+      "semantic_object_type": "BINARY_OBJECT",
+      "sql_type": "blob",
+      "nullable": false,
+      "warnings": []
+    }
+  ],
+  "constraints": {
+    "primary_key": null,
+    "unique": [],
+    "foreign_keys": []
+  },
+  "auto_increment": null,
+  "warnings": [],
+  "decisions": {
+    "schema": null,
+    "include_not_null": true,
+    "object_sample_size": 5000,
+    "json_text_threshold": 0.85,
+    "pk": null
+  },
+  "sql": {
+    "create_table": "CREATE TABLE demo_users (\n    id integer NOT NULL,\n    name text NOT NULL,\n    email text NOT NULL,\n    age integer NOT NULL,\n    salary real NOT NULL,\n    is_active integer NOT NULL,\n    created_date text NOT NULL,\n    profile text NOT NULL,\n    metadata blob NOT NULL\n)",
+    "constraints": [],
+    "auto_increment": [],
+    "full_ddl": "CREATE TABLE demo_users (\n    id integer NOT NULL,\n    name text NOT NULL,\n    email text NOT NULL,\n    age integer NOT NULL,\n    salary real NOT NULL,\n    is_active integer NOT NULL,\n    created_date text NOT NULL,\n    profile text NOT NULL,\n    metadata blob NOT NULL\n)"
+  }
+}
